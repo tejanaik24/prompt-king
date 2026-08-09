@@ -2880,3 +2880,148 @@ How the two fit together:
 
 Credentials needed if running notebooks: `OPENAI_API_KEY` always; `FAL_KEY` for
 FLUX notebooks. Never commit keys — use env vars or a local secret manager.
+
+
+============================================================
+VIDEO INTELLIGENCE SYSTEM
+============================================================
+
+Video is not "image + motion." It adds time, motion, sound, and continuity
+across frames — treat it as its own discipline.
+
+-------------------------
+REASONING CHAIN
+-------------------------
+USER INTENT → VIDEO OBJECTIVE → FORMAT → STORY / SHOT STRUCTURE → CAMERA
+  → SUBJECT MOTION → ENVIRONMENT → LIGHTING → AUDIO → CONTINUITY
+  → PLATFORM-SPECIFIC OPTIMIZATION → FINAL VIDEO PROMPT
+
+Each arrow is a decision point, resolved using the relevant subsection(s)
+below — never combine subsections "because they sound interesting" (same
+rule as the image library's DO-NOT-COMBINE-RANDOMLY guidance).
+
+-------------------------
+01. SHOT TYPES
+-------------------------
+WIDE_SHOT / MEDIUM_SHOT / CLOSE_UP / EXTREME_CLOSE_UP / ESTABLISHING_SHOT /
+OVER_THE_SHOULDER / POV_SHOT / TWO_SHOT / INSERT_SHOT / CUTAWAY / MASTER_SHOT
+
+-------------------------
+02. CAMERA MOVEMENT
+-------------------------
+STATIC / PAN / TILT / DOLLY_IN / DOLLY_OUT / TRACKING_SHOT / CRANE_SHOT /
+HANDHELD / STEADICAM / WHIP_PAN / ARC_SHOT / ZOOM / RACK_FOCUS / DRONE_SHOT /
+GIMBAL_MOVE
+
+-------------------------
+03. SUBJECT MOVEMENT & BLOCKING
+-------------------------
+Subject enters/exits frame, turns, crosses the frame; foreground-midground-
+background choreography; blocking relative to camera axis.
+
+-------------------------
+04. CINEMATOGRAPHY LANGUAGE
+-------------------------
+Framing, coverage, eyeline continuity, the 180-degree rule. Violate only
+when the request explicitly wants disorientation.
+
+-------------------------
+05. LENS LANGUAGE FOR VIDEO
+-------------------------
+Same focal-length purposes as image (see PHOTOGRAPHIC ART DIRECTION), plus
+motion-specific behavior: anamorphic flare under movement, rack-focus pulls,
+lens breathing.
+
+-------------------------
+06. LIGHTING FOR VIDEO
+-------------------------
+Cross-reference the image LIGHTING SYSTEM for base vocabulary; add motion-
+specific: PRACTICAL_TRANSITION (light source changes within a shot),
+CONTINUOUS_LIGHT_MATCH (consistency across cuts in one scene), FLICKER.
+
+-------------------------
+07. TRANSITIONS
+-------------------------
+CUT / MATCH_CUT / JUMP_CUT / CROSS_DISSOLVE / WIPE / SMASH_CUT / L_CUT /
+J_CUT / WHIP_TRANSITION
+
+-------------------------
+08. EDITING LANGUAGE / PACING
+-------------------------
+Cut frequency by genre (fast for social/ads, slower for documentary), rhythm,
+deliberate breathing room vs. relentless pacing — must match PURPOSE, not
+default to fast cuts.
+
+-------------------------
+09. STORYBOARD & SHOT LISTS
+-------------------------
+Shot-list format: shot number, shot description, camera (type + movement),
+duration, notes. Produce this structure whenever a request implies multiple
+shots/a sequence, not just a single clip.
+
+-------------------------
+10. CONTINUITY
+-------------------------
+CHARACTER_CONTINUITY / ENVIRONMENT_CONTINUITY / PROP_CONTINUITY /
+WARDROBE_CONTINUITY — cross-reference CHARACTER_CONSISTENCY_SYSTEM and
+WORLD_BUILDING_SYSTEM from the image library; same rules, applied across time.
+
+-------------------------
+11. PRODUCTION CATEGORIES
+-------------------------
+PRODUCT_DEMONSTRATION / ADVERTISEMENT / SOCIAL_SHORT_FORM / REEL /
+CINEMATIC_SEQUENCE / DOCUMENTARY / INTERVIEW / EXPLAINER_VIDEO / UGC_STYLE /
+PRODUCT_VIDEO — each implies default duration/pacing/aspect-ratio norms,
+overridable by explicit user instruction.
+
+-------------------------
+12. MOTION GRAPHICS & TITLE SEQUENCES
+-------------------------
+KINETIC_TYPE / TITLE_CARD_TIMING / LOWER_THIRD / END_CARD
+
+-------------------------
+13. VFX CONCEPTS
+-------------------------
+Describe the effect GOAL (e.g. "seamless product materialization," "subtle
+environment particle life"), not a VFX pipeline. This system writes prompts,
+not compositing instructions.
+
+-------------------------
+14. SOUND DESIGN DIRECTION
+-------------------------
+AMBIENT_BED / FOLEY_HIT / SILENCE_AS_TOOL / SOUND_TRANSITION — note which
+target platforms/models actually generate audio (see platform cheat-sheets)
+vs. which need sound added in post.
+
+-------------------------
+15. MUSIC DIRECTION
+-------------------------
+Tempo/mood matched to cut pacing; NEEDLE_DROP (existing-track feel) vs.
+SCORE (composed-for-this feel).
+
+-------------------------
+16. DIALOGUE / VOICEOVER PLANNING
+-------------------------
+VO_TONE / VO_PACING / SYNC_TO_VISUAL_BEATS — preserve user-provided wording
+exactly, same rule as image typography.
+
+-------------------------
+17. TECHNICAL PARAMETERS
+-------------------------
+Duration and aspect ratio by platform (see FORMAT DIRECTIVES in the image
+system for the social/platform table — same table governs video). Frame rate:
+24fps (cinematic), 30fps (standard/social), 60fps+ (slow-motion source),
+variable frame rate (speed ramps).
+
+-------------------------
+18. FIRST-FRAME / HOOK STRATEGY
+-------------------------
+The first 1-3 seconds must justify the watch: motion into frame, pattern
+interrupt, or an immediate text hook. Never open on a static, unclaimed frame
+for social/ad contexts.
+
+-------------------------
+19. SCENE-TO-SCENE CONTINUITY
+-------------------------
+For multi-scene sequences: character, environment, and lighting logic must
+hold across cuts unless the request is explicitly about transformation/time-skip.
