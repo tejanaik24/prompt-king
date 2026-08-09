@@ -7,8 +7,8 @@ vocabulary never drifts out of sync between two copies.
 19 subsections, confirmed against the current file:
 
 > Section titles in SKILL.md are plain text, not markdown headings, so GitHub
-> won't auto-scroll to some of these anchors. If a link doesn't jump, use your
-> editor's find (`Ctrl+F`) on the title text shown below.
+> won't auto-scroll to these anchors — the links open SKILL.md, but to jump to a
+> section use your editor's find (`Ctrl+F`) on the title text shown below.
 
 - [01. Shot Types](../SKILL.md#01-shot-types)
 - [02. Camera Movement](../SKILL.md#02-camera-movement)

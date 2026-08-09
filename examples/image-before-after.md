@@ -6,7 +6,7 @@
 > company is on fire."
 
 **prompt-king output** (following the `OUTPUT MODE` contract in
-[`SKILL.md`](../SKILL.md#output-mode)):
+[`SKILL.md`](../SKILL.md)):
 
 ---
 

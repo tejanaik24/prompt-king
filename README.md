@@ -38,7 +38,7 @@ avoid-list — see the full before/after in
 [`examples/image-before-after.md`](examples/image-before-after.md).
 
 There's a video equivalent too — a one-line product-video request turned into
-a shot-by-shot, platform-specific prompt — in
+a fully-specified, platform-specific prompt — in
 [`examples/video-before-after.md`](examples/video-before-after.md).
 
 ## Reference

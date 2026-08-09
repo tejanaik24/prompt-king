@@ -5,10 +5,9 @@
 > "Make a video for my new vitamin C serum, it's for Instagram."
 
 **prompt-king output** (following the reasoning chain in
-[`SKILL.md`](../SKILL.md#video-intelligence-system): USER INTENT → VIDEO
-OBJECTIVE → FORMAT → STORY/SHOT STRUCTURE → CAMERA → SUBJECT MOTION →
-ENVIRONMENT → LIGHTING → AUDIO → CONTINUITY → PLATFORM OPTIMIZATION → FINAL
-VIDEO PROMPT):
+[`SKILL.md`](../SKILL.md): USER INTENT → VIDEO OBJECTIVE → FORMAT →
+STORY/SHOT STRUCTURE → CAMERA → SUBJECT MOTION → ENVIRONMENT → LIGHTING →
+AUDIO → CONTINUITY → PLATFORM OPTIMIZATION → FINAL VIDEO PROMPT):
 
 ---
 
@@ -39,7 +38,7 @@ Direction).
 > focus with the brand mark clean and legible.
 >
 > Aspect ratio: 9:16 (Instagram Reel, per Format Directives). Duration: 8
-> seconds (Veo 3 single-generation cap, per platform cheat-sheet).
+> seconds (Veo 3.1 single-generation cap, per platform cheat-sheet).
 > Frame rate: 24fps for the macro beat to read as premium, not 30fps
 > social-standard throughout.
 >
