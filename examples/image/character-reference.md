@@ -5,6 +5,13 @@ This example shows how Prompt King defines character details and clothing textur
 ## User Request
 > "Character design sheet for a cyberpunk hacker named Jax. Needs to show face and clothing detail clearly."
 
+## Visual Comparison: Naive vs. Compiled Output
+
+| Without Prompt King (Naive) | With Prompt King (Compiled) |
+|:---:|:---:|
+| ![Without Prompt King](../../assets/examples/without-prompt-king.png) | ![With Prompt King](../../assets/examples/with-prompt-king.png) |
+| *Output style: Plastic-looking skin, flat neon glows, over-saturated colors, stock photo aesthetic.* | *Output style: Organic skin pores & stubble, matte fabric textures, dimensional cinematic studio lighting.* |
+
 ---
 
 ## Compiled Prompt King Output

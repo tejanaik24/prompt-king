@@ -179,6 +179,14 @@ Prompt King contains a rigorous, fresh-context **30-scenario regression evaluati
 
 ## Example
 
+### Visual Comparison: Naive vs. Compiled Output
+Below is a real-world visual comparison showing the difference between a naive prompt generation (flat, plastic, over-saturated buzzwords) and a Prompt King compiled prompt (natural lighting, material textures, and organic realism):
+
+| Without Prompt King (Naive) | With Prompt King (Compiled) |
+|:---:|:---:|
+| ![Without Prompt King](assets/examples/without-prompt-king.png) | ![With Prompt King](assets/examples/with-prompt-king.png) |
+| *Output style: Plastic-looking skin, flat neon glows, over-saturated colors, stock photo aesthetic.* | *Output style: Organic skin pores & stubble, matte fabric textures, dimensional cinematic studio lighting.* |
+
 ### User Input
 > "Make a premium AI chatbot ad."
 
