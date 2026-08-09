@@ -240,6 +240,7 @@ Aspect ratio:
 ├── data/               # Persistent learning memory (invariants, experiences)
 ├── docs/               # Technical specs (architecture, engines)
 ├── examples/           # Compiled visual prompt samples
+├── playground/         # Interactive local web compiler playground
 ├── reference/          # Index catalogs for commands & cheatsheets
 ├── rules/              # Post-gate promoted skill rules
 ├── scripts/            # Self-improvement pipeline tools
@@ -267,6 +268,13 @@ To install Prompt King as an active local developer skill in Claude Code:
     bash scripts/sync-to-claude.sh
     ```
     This copies `SKILL.md` to your local Claude Code configuration folder (`~/.claude/skills/prompt-king/SKILL.md`). Re-run this script whenever you update the repository.
+
+### Option 3: Interactive Web Playground
+You can use the local web playground to configure directives, select visual commands, resolve conflicts, and compile production-ready prompts interactively:
+
+1. Open [`playground/index.html`](playground/index.html) directly in any web browser.
+2. Select your deliverable type (Image or Video) and toggle camera, lighting, and composition chips.
+3. Copy the compiled prompt output block directly to your clipboard.
 
 ---
 

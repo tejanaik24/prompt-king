@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prompt King — Interactive Playground</title>
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0D0E11;
+      --panel: #14151B;
+      --panel-border: #1F2937;
+      --text: #F3F4F6;
+      --text-muted: #9CA3AF;
+      --primary: #8B5CF6;
+      --primary-hover: #7C3AED;
+      --accent: #D946EF;
+      --success: #10B981;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', Courier, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(217, 70, 239, 0.05) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header styling */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .logo-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 32px;
+      height: 32px;
+      fill: var(--primary);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 2.5rem;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #FFF 30%, var(--primary) 70%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0.5rem auto 0;
+    }
+
+    /* Grid Layout */
+    .playground-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 968px) {
+      .playground-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Card Panels */
+    .panel {
+      background-color: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .panel-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--panel-border);
+      padding-bottom: 0.75rem;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"], textarea, select {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    input[type="text"]:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    /* Selection Chips */
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .chip {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--panel-border);
+      border-radius: 20px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      color: var(--text-muted);
+    }
+
+    .chip:hover {
+      background-color: rgba(139, 92, 246, 0.1);
+      border-color: var(--primary);
+      color: var(--text);
+    }
+
+    .chip.active {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 0 10px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Output Section */
+    .output-panel {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .terminal-container {
+      background-color: #07080a;
+      border: 1px solid var(--panel-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+    }
+
+    .terminal-header {
+      background-color: #0f1015;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--panel-border);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background-color: #EF4444; }
+    .dot-yellow { background-color: #F59E0B; }
+    .dot-green { background-color: #10B981; }
+
+    .terminal-title {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .terminal-body {
+      padding: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #E5E7EB;
+      white-space: pre-wrap;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    /* Copy Button */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.75rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-hover);
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--panel-border);
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.03);
+      box-shadow: none;
+    }
+
+    /* Dynamic Pipeline Animation */
+    .pipeline-status {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+      border: 1px dashed var(--panel-border);
+      font-size: 0.8rem;
+    }
+
+    .pipeline-step {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--text-muted);
+    }
+
+    .pipeline-step.active {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .pipeline-step.done {
+      color: var(--success);
+    }
+
+    /* Aspect Ratio selection custom styling */
+    .ratio-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
+    }
+
+    .ratio-btn {
+      background-color: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--panel-border);
+      border-radius: 6px;
+      padding: 0.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ratio-btn:hover {
+      border-color: var(--primary);
+    }
+
+    .ratio-btn.active {
+      background-color: rgba(139, 92, 246, 0.1);
+      border-color: var(--primary);
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--panel-border);
+      padding-top: 2rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo-container">
+        <svg class="logo-icon" viewBox="0 0 24 24">
+          <path d="M12 2L2 22h20L12 2zm0 3.5L18.5 19H5.5L12 5.5z"/>
+        </svg>
+        <h1>PROMPT KING</h1>
+      </div>
+      <p>Interactive Prompt Compilation Playground. Visually reason, structure, and generate high-fidelity production-ready image and video prompts.</p>
+    </header>
+
+    <div class="playground-grid">
+      <!-- Input Panel -->
+      <div class="panel">
+        <div class="panel-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+          </svg>
+          Configure Prompt Directives
+        </div>
+
+        <div class="form-group">
+          <label for="deliverable-type">Deliverable Type</label>
+          <select id="deliverable-type" onchange="updateCompiler()">
+            <option value="IMAGE" selected>Image (Stable Diffusion / Flux / Midjourney)</option>
+            <option value="VIDEO">Video (Veo 3 / Kling / Runway)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="raw-brief">Raw Subject / Creative Brief</label>
+          <textarea id="raw-brief" placeholder="e.g. A futuristic sports car speeding through a neon-lit cyberpunk city street at night" oninput="updateCompiler()">A futuristic sports car speeding through a neon-lit cyberpunk city street at night</textarea>
+        </div>
+
+        <!-- Camera & Lens -->
+        <div class="form-group">
+          <label>Camera Perspective / Lens</label>
+          <div class="chips-container" id="camera-chips">
+            <span class="chip active" onclick="toggleChip(this, 'camera')">DSLR_PHOTOGRAPHY</span>
+            <span class="chip" onclick="toggleChip(this, 'camera')">EYE_LEVEL</span>
+            <span class="chip" onclick="toggleChip(this, 'camera')">LOW_ANGLE</span>
+            <span class="chip" onclick="toggleChip(this, 'camera')">MACRO_PHOTOGRAPHY</span>
+            <span class="chip" onclick="toggleChip(this, 'camera')">WIDE_SHOT</span>
+            <span class="chip" onclick="toggleChip(this, 'camera')">35MM_FILM</span>
+          </div>
+        </div>
+
+        <!-- Lighting -->
+        <div class="form-group">
+          <label>Lighting Grid</label>
+          <div class="chips-container" id="lighting-chips">
+            <span class="chip active" onclick="toggleChip(this, 'lighting')">MOODY_CINEMATIC</span>
+            <span class="chip" onclick="toggleChip(this, 'lighting')">NEON_CINEMA</span>
+            <span class="chip" onclick="toggleChip(this, 'lighting')">STUDIO_SOFTBOX</span>
+            <span class="chip" onclick="toggleChip(this, 'lighting')">GOLDEN_HOUR_CINEMA</span>
+            <span class="chip" onclick="toggleChip(this, 'lighting')">CHIAROSCURO</span>
+          </div>
+        </div>
+
+        <!-- Composition -->
+        <div class="form-group">
+          <label>Composition & Layout</label>
+          <div class="chips-container" id="composition-chips">
+            <span class="chip active" onclick="toggleChip(this, 'composition')">RULE_OF_THIRDS</span>
+            <span class="chip" onclick="toggleChip(this, 'composition')">NEGATIVE_SPACE</span>
+            <span class="chip" onclick="toggleChip(this, 'composition')">CENTERED_COMPOSITION</span>
+            <span class="chip" onclick="toggleChip(this, 'composition')">SYMMETRICAL_COMPOSITION</span>
+          </div>
+        </div>
+
+        <!-- Video Specifics (Conditional) -->
+        <div class="form-group" id="video-fields" style="display: none;">
+          <label>Temporal Controls (Video Only)</label>
+          <div class="chips-container" id="video-chips">
+            <span class="chip active" onclick="toggleChip(this, 'video')">DOLLY_IN</span>
+            <span class="chip" onclick="toggleChip(this, 'video')">SLOW_MOTION</span>
+            <span class="chip" onclick="toggleChip(this, 'video')">PAN_LEFT</span>
+            <span class="chip" onclick="toggleChip(this, 'video')">CONTINUOUS_MOVEMENT</span>
+          </div>
+          
+          <div style="margin-top: 1rem;">
+            <label for="video-duration">Target Duration</label>
+            <select id="video-duration" onchange="updateCompiler()">
+              <option value="5 seconds">5 Seconds</option>
+              <option value="8 seconds" selected>8 Seconds</option>
+              <option value="10 seconds">10 Seconds</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Aspect Ratio -->
+        <div class="form-group">
+          <label>Aspect Ratio</label>
+          <div class="ratio-grid">
+            <div class="ratio-btn active" onclick="selectRatio(this, '16:9')">16:9</div>
+            <div class="ratio-btn" onclick="selectRatio(this, '9:16')">9:16</div>
+            <div class="ratio-btn" onclick="selectRatio(this, '1:1')">1:1</div>
+            <div class="ratio-btn" onclick="selectRatio(this, '4:5')">4:5</div>
+          </div>
+        </div>
+
+        <!-- Custom Avoid List -->
+        <div class="form-group">
+          <label for="custom-avoid">Custom Avoid Directives (Conflict Checked)</label>
+          <input type="text" id="custom-avoid" placeholder="e.g. bright lights, soft shadows (separated by commas)" oninput="updateCompiler()">
+        </div>
+      </div>
+
+      <!-- Output Panel -->
+      <div class="panel output-panel">
+        <div class="panel-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+            <line x1="7" y1="2" x2="7" y2="22"/>
+            <line x1="17" y1="2" x2="17" y2="22"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+          </svg>
+          Compiler Output
+        </div>
+
+        <div class="terminal-container">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <div class="terminal-title" id="compiler-file-name">compiled-prompt.txt</div>
+          </div>
+          <div class="terminal-body" id="compiler-output">Loading compiler...</div>
+        </div>
+
+        <button class="btn" onclick="copyPrompt()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+          </svg>
+          Copy Production Prompt
+        </button>
+
+        <div class="pipeline-status">
+          <div class="pipeline-step done" id="step-intent">✓ Intent</div>
+          <div class="pipeline-step done" id="step-taxonomy">✓ Taxonomy</div>
+          <div class="pipeline-step done" id="step-conflict">✓ Conflict Check</div>
+          <div class="pipeline-step active" id="step-output">● Output</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Prompt King is open-source under MIT License. Created by <a href="https://github.com/tejanaik24" target="_blank">@tejanaik24</a>.</p>
+    </footer>
+  </div>
+
+  <script>
+    let activeRatio = '16:9';
+
+    function toggleChip(chipElement, type) {
+      // Toggle active class on clicked chip
+      chipElement.classList.toggle('active');
+      updateCompiler();
+    }
+
+    function selectRatio(btnElement, ratio) {
+      // Remove active from all ratio buttons
+      document.querySelectorAll('.ratio-grid .ratio-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      // Add active to clicked ratio button
+      btnElement.classList.add('active');
+      activeRatio = ratio;
+      updateCompiler();
+    }
+
+    function getSelectedChips(containerId) {
+      const chips = [];
+      document.querySelectorAll(`#${containerId} .chip.active`).forEach(chip => {
+        chips.push(chip.innerText);
+      });
+      return chips;
+    }
+
+    function updateCompiler() {
+      const type = document.getElementById('deliverable-type').value;
+      const brief = document.getElementById('raw-brief').value.trim() || 'Empty subject brief.';
+      const customAvoidRaw = document.getElementById('custom-avoid').value;
+      
+      const camera = getSelectedChips('camera-chips');
+      const lighting = getSelectedChips('lighting-chips');
+      const composition = getSelectedChips('composition-chips');
+      const videoSpec = getSelectedChips('video-chips');
+      const videoDuration = document.getElementById('video-duration').value;
+
+      // Toggle video parameters visibility
+      const videoFields = document.getElementById('video-fields');
+      if (type === 'VIDEO') {
+        videoFields.style.display = 'block';
+        document.getElementById('compiler-file-name').innerText = 'compiled-video-prompt.txt';
+      } else {
+        videoFields.style.display = 'none';
+        document.getElementById('compiler-file-name').innerText = 'compiled-image-prompt.txt';
+      }
+
+      // Conflict checks and negative engine simulation
+      let baseAvoid = ['generic AI art look', 'default digital art style', 'glossy render look', 'airbrushed textures', 'blown-out highlights'];
+      let userAvoid = customAvoidRaw.split(',').map(t => t.trim()).filter(t => t.length > 0);
+      let combinedAvoid = [...userAvoid, ...baseAvoid];
+
+      // Perform a simulated conflict check
+      const pipelineSteps = {
+        intent: document.getElementById('step-intent'),
+        taxonomy: document.getElementById('step-taxonomy'),
+        conflict: document.getElementById('step-conflict'),
+        output: document.getElementById('step-output')
+      };
+
+      // Simulated resolution flags
+      let conflictResolved = [];
+      
+      // If we ask to avoid something that is in the lighting or camera, prune it
+      if (combinedAvoid.some(a => a.toLowerCase().includes('softbox') || a.toLowerCase().includes('soft')) && lighting.includes('STUDIO_SOFTBOX')) {
+        combinedAvoid = combinedAvoid.filter(a => !a.toLowerCase().includes('softbox') && !a.toLowerCase().includes('soft'));
+        conflictResolved.push('Removed "soft lighting" from avoid list to resolve conflict with STUDIO_SOFTBOX command.');
+      }
+
+      // Build text representation
+      let outputText = '';
+      
+      if (type === 'IMAGE') {
+        outputText += `1. SELECTED VISUAL TYPE\n`;
+        outputText += `Commercial Reality & Art Direction (PRODUCT_HERO + HIGH_REALISM)\n\n`;
+        
+        outputText += `2. PURPOSE\n`;
+        outputText += `High-fidelity production-ready layout representation mapping visual parameters to render engines.\n\n`;
+        
+        outputText += `3. SELECTED COMMANDS\n`;
+        outputText += `${[...camera, ...lighting, ...composition].join(', ')}, ${activeRatio}\n\n`;
+        
+        outputText += `4. FINAL PRODUCTION PROMPT\n`;
+        outputText += `Create a professional high-fidelity visual matching the following layout specifications.\n\n`;
+        outputText += `Subject:\n${brief}\n\n`;
+        
+        outputText += `Visual language:\nProfessional visual graphic matching high-end editorial standards, focusing on texture integrity and realistic shadows.\n\n`;
+        
+        if (composition.length > 0) {
+          outputText += `Composition:\nStructured composition applying ${composition.join(' and ')} rules.\n\n`;
+        }
+        
+        if (camera.length > 0) {
+          outputText += `Camera:\nShot aligning with ${camera.join(' / ')} lens parameters, ensuring clean crisp focal points.\n\n`;
+        }
+        
+        if (lighting.length > 0) {
+          outputText += `Lighting:\nLighting structure mapping ${lighting.join(' and ')} configurations for specular highlight and surface reflections.\n\n`;
+        }
+        
+        outputText += `Materials:\nOrganic physical textures, clear refractions, non-uniform paper/metal/glass surface details.\n\n`;
+        outputText += `Realism:\nPhysically plausible light interactions, natural caustics, subtle real-world details (no plastic default AI gloss).\n\n`;
+        outputText += `Aspect ratio:\n${activeRatio}\n\n`;
+        
+        outputText += `5. ASPECT RATIO\n`;
+        outputText += `${activeRatio}\n\n`;
+        
+        outputText += `6. OPTIONAL NEGATIVE / AVOID LIST\n`;
+        outputText += `*Generated via Negative Prompt Intelligence Engine (Negative base: NEG-V1)*\n`;
+        outputText += `Avoid: ${combinedAvoid.join(', ')}.`;
+      } else {
+        outputText += `1. SELECTED VISUAL TYPE\n`;
+        outputText += `Cinematic Production Video — Temporal Dynamics Frame (${videoSpec.includes('SLOW_MOTION') ? 'SLOW_MOTION_CINEMATIC' : 'HIGH_FRAME_STILL'})\n\n`;
+        
+        outputText += `2. PURPOSE\n`;
+        outputText += `Premium cinematic video matching target screen aspect ratios with continuous tracking controls.\n\n`;
+        
+        outputText += `3. SELECTED COMMANDS\n`;
+        outputText += `${[...camera, ...lighting, ...composition, ...videoSpec].join(', ')}, ${activeRatio}, Duration: ${videoDuration}\n\n`;
+        
+        outputText += `4. FINAL PRODUCTION PROMPT\n`;
+        outputText += `Create a cinematic high-fidelity video matching the following layout specifications.\n\n`;
+        outputText += `Subject:\n${brief}\n\n`;
+        
+        if (videoSpec.length > 0) {
+          outputText += `Camera Movement:\n${videoSpec.join(', ')} camera moves, ensuring smooth tracking trajectories.\n\n`;
+        }
+        
+        outputText += `Action & Pacing:\nContinuous movement, natural speed profiles, frame-rate aligned pacing.\n\n`;
+        
+        if (lighting.length > 0) {
+          outputText += `Lighting:\nAmbient lighting mapping ${lighting.join(' and ')} to maximize temporal scene details.\n\n`;
+        }
+        
+        outputText += `Duration:\n${videoDuration}\n\n`;
+        outputText += `Aspect ratio:\n${activeRatio}\n\n`;
+        
+        outputText += `5. ASPECT RATIO\n`;
+        outputText += `${activeRatio}\n\n`;
+        
+        outputText += `6. OPTIONAL NEGATIVE / AVOID LIST\n`;
+        outputText += `*Generated via Negative Prompt Intelligence Engine (Negative base: NEG-V1)*\n`;
+        outputText += `Avoid: ${combinedAvoid.join(', ')}.`;
+      }
+
+      // Add conflict resolution warnings if any
+      if (conflictResolved.length > 0) {
+        outputText += `\n\n============================================================\n`;
+        outputText += `RESOLVED CONFLICTS\n`;
+        outputText += `============================================================\n`;
+        conflictResolved.forEach(c => {
+          outputText += `⚠️ ${c}\n`;
+        });
+      }
+
+      document.getElementById('compiler-output').innerText = outputText;
+    }
+
+    function copyPrompt() {
+      const outputText = document.getElementById('compiler-output').innerText;
+      navigator.clipboard.writeText(outputText).then(() => {
+        const btn = document.querySelector('.btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '✓ Copied to Clipboard!';
+        btn.style.backgroundColor = 'var(--success)';
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.style.backgroundColor = 'var(--primary)';
+        }, 2000);
+      });
+    }
+
+    // Initial render
+    updateCompiler();
+  </script>
+</body>
+</html>
