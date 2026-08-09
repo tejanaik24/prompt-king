@@ -3029,3 +3029,54 @@ hold across cuts unless the request is explicitly about transformation/time-skip
 Named-platform quirks (Veo 3, Kling, Runway, Pika, Luma): see
 `reference/platform-cheatsheets.md`, refreshed via the RESEARCH PROTOCOL when
 stale.
+
+============================================================
+RESEARCH PROTOCOL
+============================================================
+
+TRIGGER CONDITIONS (any one fires research):
+- A specific model/platform is named.
+- The request uses trend language ("trending", "viral", "what's working now").
+- The relevant built-in reference (e.g. a platform cheat-sheet) is flagged stale
+  or missing.
+
+DO NOT RESEARCH WHEN:
+- The request is generic/platform-agnostic (a poster, a book illustration with
+  no named tool or trend claim).
+- The built-in reference for what's being asked is already current and specific
+  enough to answer.
+- Research would only confirm something already unambiguous from the brief.
+
+PROCEDURE WHEN TRIGGERED (QUESTION → RESEARCH NEED → SOURCE STRATEGY →
+SOURCE VALIDATION → EVIDENCE → SYNTHESIS → UNCERTAINTY → ANSWER):
+
+QUESTION: State the research objective in one line (what fact is actually
+needed).
+
+RESEARCH NEED: Confirm this actually requires live research — re-check
+against TRIGGER CONDITIONS / DO NOT RESEARCH WHEN above before spending a
+search. If no web access is available (copy-paste context, no WebSearch tool),
+skip live research and proceed to built-in reference tables, then flag the
+output: "based on knowledge as of [date] — verify if this platform shipped an
+update since." For unnamed or new platforms not in the cheat-sheets, always
+research; no built-in fallback exists to guess from.
+
+SOURCE STRATEGY: Identify likely authoritative sources (official docs > verified
+news/reviews > forums/social — in that priority order).
+
+SOURCE VALIDATION: Search and read; assess whether the source itself is
+credible and current before trusting its content.
+
+EVIDENCE: Separate confirmed fact from assumption — if a source implies but
+doesn't state something, mark it as inference, not fact.
+
+SYNTHESIS: If sources disagree, surface the disagreement rather than picking one
+silently. Note freshness — how recently was this true? Flag if the source itself
+is old.
+
+UNCERTAINTY: If nothing solid is found, say so explicitly — never fill the gap
+with a plausible-sounding invented fact.
+
+ANSWER: Write findings with source + date attached to every claim; fold into the
+final prompt as grounded specifics ("per [source], as of [date], X"), not as a
+separate research report unless the user asked for research specifically.
