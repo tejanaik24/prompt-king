@@ -47,12 +47,22 @@ a fully-specified, platform-specific prompt — in
   image command library's groups and systems, pointing into `SKILL.md`.
 - [`reference/video-commands.md`](reference/video-commands.md) — index of the
   19-subsection video taxonomy.
+- [`reference/negative-prompt-engine.md`](reference/negative-prompt-engine.md) —
+  the versioned negative-prompt engine (content-matched avoid lists).
 - [`reference/platform-cheatsheets.md`](reference/platform-cheatsheets.md) —
   sourced, dated notes on Veo 3, Kling, Runway, Pika, and Luma.
 
 `SKILL.md` is the single source of truth for the actual command vocabulary —
 the reference files are pointers into it, not copies, so nothing drifts out
 of sync.
+
+## Self-improvement
+
+Prompt King records its own failures at session close and learns from them
+through a human-gated pipeline — it never rewrites its own core behavior.
+See [`docs/self-improvement-engine.md`](docs/self-improvement-engine.md) and
+the negative-prompt engine's versioned knowledge base in
+[`docs/negative-prompt-engine.md`](docs/negative-prompt-engine.md).
 
 ## License
 

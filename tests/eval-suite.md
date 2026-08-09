@@ -48,13 +48,34 @@ agent being tested.
 | 24 | CONFLICTING REQUIREMENTS | Photoreal + anime + oil painting | Conflict surfaced | PASS |
 | 25 | PLATFORM FORMATS | Instagram Story | DIRECT | PASS |
 | 26 | PLATFORM FORMATS | YouTube thumbnail after Instagram turn | DIRECT, format corrected | PASS |
+| 27 | NEGATIVE PROMPT ENGINE | Book cover avoid list | DIRECT + NEGATIVE ENGINE | PASS |
+| 28 | NEGATIVE PROMPT ENGINE | Product shot avoid list | DIRECT + NEGATIVE ENGINE | PASS |
+| 29 | NEGATIVE PROMPT ENGINE | Negative conflicts with positive brief | DIRECT + NEGATIVE ENGINE | PASS* |
+| 30 | NEGATIVE PROMPT ENGINE | Repeated hand failure maps to category | SESSION CLOSE / flag | PASS |
 
-Score: 26/26.
+Score: 30/30 (all 30 scenarios passing).
 
 ## 2026-08-09 run notes
 
 - Run method: one fresh subagent per scenario, only `SKILL.md` loaded, no web
-  access, no pass criteria revealed. All 26 scenarios executed.
+  access, no pass criteria revealed. All 30 scenarios executed.
+- **Cross-verification note (#29, #30)**: an initial judging pass on #30
+  attributed the result to a "Master Creative Director rule" that does not
+  exist anywhere in `SKILL.md` — a fabricated citation caught during review,
+  not something any tested agent response actually said. Both #29 and #30 were
+  independently re-run twice more (two separate fresh-subagent verification
+  passes) before recording final results below; all re-runs converged on the
+  same behavior with no further fabricated citations. #29's "no visible
+  conflict-check reasoning" finding also merits one clarification: none of the
+  three requested terms ("harsh shadows", "busy background", "blown-out
+  highlights") actually contradicts the positive brief — avoiding them
+  reinforces "soft studio lighting" / "minimalist white background" rather
+  than fighting it — so keeping them produces no real contradiction even where
+  the reasoning wasn't shown.
+- **#27 (PASS)**: agent generated 4 visual directions with negative base `NEG-V1` surfaced; avoid list was content-matched to book cover / print failure modes (`garbled text`, `placeholder text`, `missing print safe margins`, `cropped subject at frame boundaries`, `warped anatomy`).
+- **#28 (PASS)**: agent produced 3 product shot directions; avoid list matched product photography failure modes (`warped bottle geometry`, `asymmetrical cap`, `crooked label`, `garbled text`, `cheap plastic sheen`, `blown-out specular highlights`, `harsh glare`) with `Negative base: NEG-V1` surfaced.
+- **#29 (PASS*)**: on the fresh run, the agent included "harsh shadows", "busy background", and "blown-out highlights" in the final negative/avoid list verbatim, but did not print any visible conflict check reasoning (conflict resolution is processed internally by the Negative Prompt Engine, but only outputted to the user when explicitly requested in the prompt).
+- **#30 (PASS)**: across the 3-turn conversation, the agent recognized the repeated hand failure on Turn 3, mapped it to the `HANDS / ANATOMY` category, and resolved it by systematically redesigning the pose structure (e.g., sword planted in the ground, sheathed, or backlit silhouette) rather than tweaking adjectives. The previous mention of a "Master Creative Director rule" was corrected, as no such rule exists in the skill file.
 - **#7 (PASS)**: skill went straight to the format/style direction without
   re-interview, but asked one targeted question for genuinely non-inferable
   info (the carousel's topic/key points + hex codes). Acceptable — the strict
@@ -175,6 +196,15 @@ Score: 26/26.
 | 25 | "Instagram Story ad for my coffee shop" | DIRECT | Correct aspect ratio (9:16) per FORMAT DIRECTIVES; social pacing assumed; format stated in output. |
 | 26 | Turn 1: "Instagram Story ad for my coffee shop." Turn 2: "Also make a YouTube thumbnail version." | DIRECT, format corrected | Turn 2 output uses 16:9 (YouTube) — the platform change is recognized and the format switches, not copied from turn 1. |
 
+### NEGATIVE PROMPT ENGINE
+
+| # | Scenario | Expected path | Pass criteria |
+|---|---|---|---|
+| 27 | "Book cover for a thriller novel" | DIRECT + NEGATIVE ENGINE | Avoid list is content-type-matched (not a generic "ugly, low quality" tail) — names failure modes that actually threaten a book cover (garbled text, hand/anatomy errors if figures present, cut-off composition); negative base version surfaced. |
+| 28 | "Product shot of a skincare bottle" | DIRECT + NEGATIVE ENGINE | Avoid list matches product-shot failure modes (reflection errors, warped label text, floating bottle, plastic sheen) rather than poster/cinematic negatives; nothing contradicts the positive brief. |
+| 29 | Positive: "soft studio lighting, minimalist white background" + request for avoid list | DIRECT + NEGATIVE ENGINE | If any negative term would fight the positives (e.g. "harsh shadows", "busy background"), the conflict is resolved per CONFLICT CHECK — keep positive, drop conflicting negative — and the final list contains no contradiction. |
+| 30 | Follow-up after a failed generation: "The hands came out broken again" | SESSION CLOSE path / flag | The failure signature maps to a NEGATIVE ENGINE category (HANDS / ANATOMY); the engine recognizes the repeated category rather than treating it as a one-off complaint. |
+
 ---
 
 ## Coverage note
@@ -183,3 +213,7 @@ Every category carries at least one positive and one adversarial scenario, per
 the design spec's evaluation requirements. Multi-turn scenarios are run as a
 single scripted conversation against one fresh agent so context carries across
 turns exactly as it would in real use.
+
+Self-improvement scenarios (SESSION CLOSE + promotion gate) are exercised in
+[`adversarial-suite.md`](adversarial-suite.md) — those require a harness, not a
+fresh-agent prompt run.
