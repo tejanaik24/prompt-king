@@ -31,6 +31,71 @@ software).
   (per user instruction — do not start early).
 - Follow the existing repo structure already created: `c:\claude code\prompt-king\`
   with `docs/superpowers/specs/` and `docs/superpowers/plans/` already present.
+- `SKILL.md` lives at the repo root going forward (copied from
+  `~/.claude/skills/prompt-king/SKILL.md` as the pre-Task-1 baseline commit) — every
+  task edits the repo copy so changes are git-diffable and reviewable. The live
+  `~/.claude/skills/` copy is synced back from the repo, not edited directly, once
+  Task 6's sync script exists.
+- Commands are visual vocabulary, not prompt templates — reasoning selects and
+  combines them; never keyword-match a request straight to a canned template.
+- Interview only when missing information materially changes the result; never
+  exceed the 3-question hard limit (Task 4).
+- Conflicting requirements are surfaced to the user, never silently resolved
+  (Tasks 4 and 5).
+- Preserve all existing `SKILL.md` content unless a task explicitly changes it —
+  every task in this plan is additive (new sections), not a rewrite of the image
+  library.
+
+## Master Reasoning Pipeline
+
+The following five reasoning chains are binding requirements, not illustrations —
+each must appear as its own explicitly labeled block in the relevant `SKILL.md`
+section (not just be implicitly true of the prose). Where a task's existing step
+content below uses different labels for an equivalent step, the implementer
+reconciles wording to match these chains exactly, preserving any additional detail
+the existing step content already carries.
+
+**General (governs DIRECT for both image and video):**
+```
+USER INTENT → REQUIREMENTS → RESEARCH WHEN NEEDED → CREATIVE/VISUAL STRATEGY
+  → COMMAND SELECTION → PROMPT CONSTRUCTION → SELF-CRITIQUE → PROMPT OPTIMIZATION
+  → FINAL OUTPUT
+```
+This is the outer pipeline; the image system's existing 17-step reasoning chain
+(USER INTENT → PURPOSE → ... → FINAL PROMPT, already in `SKILL.md`) is the detailed
+expansion of this chain's COMMAND SELECTION/PROMPT CONSTRUCTION stages specifically
+for images. Task 1 adds the equivalent expansion for video (below).
+
+**Video (Task 1 — add as its own labeled block in the `VIDEO INTELLIGENCE SYSTEM`
+section, alongside, not replacing, the 19 taxonomy groups already specified):**
+```
+USER INTENT → VIDEO OBJECTIVE → FORMAT → STORY / SHOT STRUCTURE → CAMERA
+  → SUBJECT MOTION → ENVIRONMENT → LIGHTING → AUDIO → CONTINUITY
+  → PLATFORM-SPECIFIC OPTIMIZATION → FINAL VIDEO PROMPT
+```
+
+**Research (Task 3 — restructure the existing PROCEDURE steps under these exact
+labels, keeping all the detail already specified for each step):**
+```
+QUESTION → RESEARCH NEED → SOURCE STRATEGY → SOURCE VALIDATION → EVIDENCE
+  → SYNTHESIS → UNCERTAINTY → ANSWER
+```
+
+**Interview (Task 4 — restructure the existing protocol under these exact labels):**
+```
+REQUEST → MISSING INFORMATION → HIGHEST-VALUE QUESTION → USER ANSWER
+  → ADAPTIVE NEXT QUESTION → STOP WHEN SUFFICIENT → CREATIVE BRIEF
+```
+
+**Self-critique (Task 5 — restructure the existing loop under these exact labels;
+the existing loop's REDUNDANCY, SPECIFICITY, STYLE-CONSISTENCY, and
+REFERENCE-CONTROL checks nest under COMPLETENESS CHECK / VISUAL COHERENCE CHECK /
+REFERENCE CHECK below rather than being dropped):**
+```
+DRAFT → AMBIGUITY CHECK → CONFLICT CHECK → COMPLETENESS CHECK
+  → VISUAL COHERENCE CHECK → REFERENCE CHECK → PLATFORM CHECK → REALISM CHECK
+  → OPTIMIZE → FINAL
+```
 
 ---
 
@@ -172,9 +237,9 @@ Each component below is specified before its implementation task.
   the vocabulary already lives in `SKILL.md`/`reference/`, and there's no machine
   schema to validate against (this is a prompt, not an API). YAGNI.
 - **Files:** Create `README.md`, `CHANGELOG.md`, `LICENSE`, `reference/*.md`,
-  `examples/*.md`, `prompt-king.md`. Move/copy `~/.claude/skills/prompt-king/SKILL.md`
-  into the repo (repo becomes the source of truth; the `~/.claude/skills/` copy stays
-  in sync manually or via a symlink — see Task 6).
+  `examples/*.md`, `prompt-king.md`, `scripts/sync-to-claude.sh` (the repo's
+  `SKILL.md` has been the source of truth since the pre-Task-1 baseline copy;
+  this task syncs the live `~/.claude/skills/` copy from it, not the reverse).
 - **Dependencies:** All content tasks (A-D) complete, since README examples reference
   the video system and self-critique behavior.
 - **Inputs:** Finished `SKILL.md`, reference files.
@@ -246,14 +311,17 @@ Each component below is specified before its implementation task.
 ## Task 1: Author the Video Intelligence System taxonomy
 
 **Files:**
-- Modify: `C:\Users\user\.claude\skills\prompt-king\SKILL.md` (append new section)
+- Modify: `SKILL.md` at repo root (append new section)
 
 **Interfaces:**
 - Consumes: existing `SKILL.md` structure/format conventions (command name +
   `Purpose:` one-liner, `====` section dividers, matching the image library's style).
+- Consumes: the Video reasoning chain in the plan's "Master Reasoning Pipeline"
+  section — include it as its own labeled block in this section.
 - Produces: a `VIDEO INTELLIGENCE SYSTEM` section with 19 named subsections (listed
-  below) that Task 2 (platform cheat-sheets), Task 5 (self-critique loop), and
-  Task 8 (eval suite) all reference by these exact subsection names.
+  below) plus the video reasoning-chain block, that Task 2 (platform cheat-sheets),
+  Task 5 (self-critique loop), and Task 8 (eval suite) all reference by these exact
+  subsection names.
 
 - [ ] **Step 1: Write the taxonomy content**
 
@@ -404,14 +472,9 @@ the existing image library — no format drift.
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "C:\Users\user\.claude\skills\prompt-king"
-git init 2>/dev/null; git add SKILL.md
+git add SKILL.md
 git commit -m "Add Video Intelligence System taxonomy"
 ```
-
-(Note: `~/.claude/skills/prompt-king` is not yet a git repo — Task 6 reconciles
-this with the `c:\claude code\prompt-king` repo. Until then, commit locally here
-so history isn't lost.)
 
 ---
 
@@ -464,7 +527,6 @@ refreshed via the RESEARCH PROTOCOL when stale."
 - [ ] **Step 5: Commit**
 
 ```bash
-cd "c:/claude code/prompt-king"
 git add reference/platform-cheatsheets.md
 git commit -m "Add researched platform cheat-sheets for video generation"
 ```
@@ -528,7 +590,6 @@ and PROCEDURE steps. Fix any gap found.
 - [ ] **Step 3: Commit**
 
 ```bash
-cd "C:\Users\user\.claude\skills\prompt-king"
 git add SKILL.md
 git commit -m "Add Research Protocol"
 ```
@@ -580,7 +641,6 @@ to DIRECT.
 - [ ] **Step 2: Commit**
 
 ```bash
-cd "C:\Users\user\.claude\skills\prompt-king"
 git add SKILL.md
 git commit -m "Add Interview Protocol"
 ```
@@ -636,50 +696,46 @@ back to the user, not a forced prompt.
 - [ ] **Step 2: Commit**
 
 ```bash
-cd "C:\Users\user\.claude\skills\prompt-king"
 git add SKILL.md
 git commit -m "Add Self-Critique Loop"
 ```
 
 ---
 
-## Task 6: Reconcile the two SKILL.md locations and scaffold the repo
+## Task 6: Scaffold the repo and sync back to the live skill
 
 **Files:**
-- Modify: `c:\claude code\prompt-king\` (add README.md, LICENSE, CHANGELOG.md,
+- Modify: repo root (add README.md, LICENSE, CHANGELOG.md,
   reference/image-commands.md, reference/video-commands.md, examples/*.md,
-  prompt-king.md)
-- Decide and implement: single source of truth between
-  `~/.claude/skills/prompt-king/SKILL.md` (used live by Claude Code) and
-  `c:\claude code\prompt-king\SKILL.md` (published copy)
+  prompt-king.md, scripts/sync-to-claude.sh)
+- Sync target: `~/.claude/skills/prompt-king/SKILL.md` (kept in sync from the
+  repo copy, which has been the single source of truth since the pre-Task-1
+  baseline commit — not edited directly)
 
 **Interfaces:**
-- Consumes: the finished `SKILL.md` from Tasks 1-5.
-- Produces: the public repo tree the README and eval suite both reference.
+- Consumes: the finished `SKILL.md` from Tasks 1-5 (already in the repo).
+- Produces: the public repo tree the README and eval suite both reference, and
+  a synced live skill copy.
 
-- [ ] **Step 1: Pick the sync mechanism**
+- [ ] **Step 1: Create the sync script and run it**
 
 Windows symlinks need elevated permissions and are fragile across machines —
-use a copy-on-publish step instead: the repo's `SKILL.md` is the source of
-truth; a one-line `scripts/sync-to-claude.sh` copies it to
-`~/.claude/skills/prompt-king/SKILL.md` after edits. Simpler than a symlink,
-no permissions issue, and matches YAGNI (no sync automation needed until edits
-actually happen post-launch).
-
-- [ ] **Step 2: Copy the current SKILL.md into the repo and create the sync script**
+use a copy-on-publish script instead:
 
 ```bash
-cp "C:/Users/user/.claude/skills/prompt-king/SKILL.md" "c:/claude code/prompt-king/SKILL.md"
-```
-
-```bash
-# c:/claude code/prompt-king/scripts/sync-to-claude.sh
+# scripts/sync-to-claude.sh
 #!/bin/bash
 cp SKILL.md "C:/Users/user/.claude/skills/prompt-king/SKILL.md"
 echo "Synced to Claude Code skills directory."
 ```
 
-- [ ] **Step 3: Write `reference/image-commands.md` and `reference/video-commands.md`**
+Run it once now so the live skill picks up Tasks 1-5's additions:
+
+```bash
+bash scripts/sync-to-claude.sh
+```
+
+- [ ] **Step 2: Write `reference/image-commands.md` and `reference/video-commands.md`**
 
 Each is a short index, NOT a fork of the content:
 
@@ -696,7 +752,7 @@ Groups: [list the 36 group names with line-anchor links into SKILL.md]
 
 (Same pattern for `video-commands.md`, listing the 19 subsections from Task 1.)
 
-- [ ] **Step 4: Write `prompt-king.md`** (universal copy-paste version)
+- [ ] **Step 3: Write `prompt-king.md`** (universal copy-paste version)
 
 Copy `SKILL.md`, strip the YAML frontmatter, and replace Claude-Code-specific
 tool references in the RESEARCH PROTOCOL with: "If you have web browsing
@@ -704,9 +760,9 @@ available, use it for the research steps below. If not, skip research and rely
 on the reference tables, flagging that results may be based on knowledge as of
 [skill version date]." Everything else is directly portable.
 
-- [ ] **Step 5: Write `LICENSE`** (MIT, standard text, copyright Teja / current year)
+- [ ] **Step 4: Write `LICENSE`** (MIT, standard text, copyright Teja / current year)
 
-- [ ] **Step 6: Write `CHANGELOG.md`**
+- [ ] **Step 5: Write `CHANGELOG.md`**
 
 ```markdown
 # Changelog
@@ -720,23 +776,22 @@ on the reference tables, flagging that results may be based on knowledge as of
 - Agentic pipeline: Interview Protocol, Research Protocol, Self-Critique Loop.
 ```
 
-- [ ] **Step 7: Write `examples/*.md`**
+- [ ] **Step 6: Write `examples/*.md`**
 
 At minimum: `examples/image-before-after.md` and `examples/video-before-after.md`,
 each showing a vague one-line user request next to the final structured prompt
 prompt-king would produce, so a README reader sees the value in 10 seconds.
 
-- [ ] **Step 8: Write `README.md`**
+- [ ] **Step 7: Write `README.md`**
 
 Structure: one-line hook → the copy-paste prompt (`prompt-king.md` contents, or
 a fenced link to it) → one before/after example → Claude Code install
-instructions (`cp SKILL.md ~/.claude/skills/prompt-king/SKILL.md` or clone into
-the skills dir) → link to `reference/` and `examples/` → license.
+instructions (`bash scripts/sync-to-claude.sh` or clone into the skills dir) →
+link to `reference/` and `examples/` → license.
 
-- [ ] **Step 9: Commit and push**
+- [ ] **Step 8: Commit**
 
 ```bash
-cd "c:/claude code/prompt-king"
 git add -A
 git commit -m "Scaffold public repo: README, LICENSE, CHANGELOG, reference index, examples"
 ```
@@ -836,14 +891,13 @@ just that scenario.
 - [ ] **Step 4: Commit**
 
 ```bash
-cd "c:/claude code/prompt-king"
 git add tests/eval-suite.md
 git commit -m "Add and run evaluation suite; all scenarios passing"
 ```
 
 ---
 
-## Task 9: Documentation and publish
+## Task 9: Documentation
 
 **Files:**
 - Create: `docs/architecture.md`
@@ -862,21 +916,18 @@ component lives (file map), and a pointer to the full spec for detail.
 Walk every "Acceptance criteria" line in the Component Specifications section
 above and confirm it's met. Fix anything that isn't.
 
-- [ ] **Step 3: Create the GitHub repo and push**
+- [ ] **Step 3: Commit**
 
 ```bash
-gh repo create tejanaik24/prompt-king --public --description "Agentic prompt-engineering system for image and video generation" --source=. --remote=origin
-git push -u origin main
-```
-
-- [ ] **Step 4: Commit any final doc changes**
-
-```bash
-cd "c:/claude code/prompt-king"
 git add docs/architecture.md
 git commit -m "Add architecture doc"
-git push
 ```
+
+**Note — publishing is NOT part of this task.** Creating the GitHub repo and
+pushing happens once, on `main`, after the whole-branch review is clean and
+`superpowers:finishing-a-development-branch` has merged this branch back —
+never from inside a task's worktree/branch. See "Publish (post-merge, controller-only)"
+after the Task Order section below.
 
 ---
 
@@ -884,4 +935,15 @@ git push
 
 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 (linear; each task's Interfaces section shows
 why — Task 6 needs 1-5's content, Task 8 needs 6-7's finished repo, Task 9 is
-the publish gate and needs 8's passing suite).
+the documentation gate and needs 8's passing suite).
+
+## Publish (post-merge, controller-only)
+
+Not a task an implementer subagent runs. After the final whole-branch review is
+clean and `superpowers:finishing-a-development-branch` has merged this branch
+into `main`, on `main`:
+
+```bash
+gh repo create tejanaik24/prompt-king --public --description "Agentic prompt-engineering system for image and video generation" --source=. --remote=origin
+git push -u origin main
+```
