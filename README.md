@@ -11,6 +11,10 @@
   <img src="https://img.shields.io/badge/engine-v0.2.0-blue?style=flat-square" alt="Engine Version">
 </p>
 
+<p align="center">
+  <a href="https://tejanaik24.github.io/prompt-king/playground/"><strong>🎮 Try the Live Playground Demo</strong></a>
+</p>
+
 ---
 
 Prompt King is a **structured creative intelligence skill** and prompt-compilation framework that transforms raw, ambiguous user inputs into fully-researched, visually-reasoned, and optimized image/video generation prompts. It implements a formal image/video command taxonomy, a contextual negative prompt engine, and a human-gated self-improvement pipeline.
