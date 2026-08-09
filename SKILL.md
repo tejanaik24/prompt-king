@@ -3134,7 +3134,7 @@ DRAFT: The prompt DIRECT just assembled, read as if seeing it fresh.
 AMBIGUITY CHECK: Any instruction that could be read two ways? Resolve or flag it.
 
 CONFLICT CHECK: Any two instructions that fight each other? Surface to the
-user rather than silently picking one — same rule as the Interview Protocol.
+user rather than silently picking one — same rule as the INTERVIEW PROTOCOL.
 If this check finds something unresolvable, this loop's output is a question
 back to the user, not a forced prompt.
 
