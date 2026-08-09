@@ -3025,3 +3025,7 @@ for social/ad contexts.
 -------------------------
 For multi-scene sequences: character, environment, and lighting logic must
 hold across cuts unless the request is explicitly about transformation/time-skip.
+
+Named-platform quirks (Veo 3, Kling, Runway, Pika, Luma): see
+`reference/platform-cheatsheets.md`, refreshed via the RESEARCH PROTOCOL when
+stale.
