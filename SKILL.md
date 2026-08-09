@@ -2963,8 +2963,8 @@ shots/a sequence, not just a single clip.
 10. CONTINUITY
 -------------------------
 CHARACTER_CONTINUITY / ENVIRONMENT_CONTINUITY / PROP_CONTINUITY /
-WARDROBE_CONTINUITY — cross-reference CHARACTER_CONSISTENCY_SYSTEM and
-WORLD_BUILDING_SYSTEM from the image library; same rules, applied across time.
+WARDROBE_CONTINUITY — cross-reference CHARACTER CONSISTENCY SYSTEM and
+WORLD-BUILDING SYSTEM from the image library; same rules, applied across time.
 
 -------------------------
 11. PRODUCTION CATEGORIES
