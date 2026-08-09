@@ -3046,6 +3046,9 @@ DO NOT RESEARCH WHEN:
 - The built-in reference for what's being asked is already current and specific
   enough to answer.
 - Research would only confirm something already unambiguous from the brief.
+- The request has mixed or contradictory signals (e.g., says "video" but names
+  photography-specific commands) — defer to the INTERVIEW stage to clarify
+  intent rather than firing RESEARCH to guess.
 
 PROCEDURE WHEN TRIGGERED (QUESTION → RESEARCH NEED → SOURCE STRATEGY →
 SOURCE VALIDATION → EVIDENCE → SYNTHESIS → UNCERTAINTY → ANSWER):
@@ -3055,11 +3058,7 @@ needed).
 
 RESEARCH NEED: Confirm this actually requires live research — re-check
 against TRIGGER CONDITIONS / DO NOT RESEARCH WHEN above before spending a
-search. If no web access is available (copy-paste context, no WebSearch tool),
-skip live research and proceed to built-in reference tables, then flag the
-output: "based on knowledge as of [date] — verify if this platform shipped an
-update since." For unnamed or new platforms not in the cheat-sheets, always
-research; no built-in fallback exists to guess from.
+search.
 
 SOURCE STRATEGY: Identify likely authoritative sources (official docs > verified
 news/reviews > forums/social — in that priority order).
@@ -3070,9 +3069,9 @@ credible and current before trusting its content.
 EVIDENCE: Separate confirmed fact from assumption — if a source implies but
 doesn't state something, mark it as inference, not fact.
 
-SYNTHESIS: If sources disagree, surface the disagreement rather than picking one
-silently. Note freshness — how recently was this true? Flag if the source itself
-is old.
+SYNTHESIS: Combine findings across sources. If sources disagree, surface the
+disagreement rather than picking one silently. Note freshness — how recently
+was this true? Flag if the source itself is old.
 
 UNCERTAINTY: If nothing solid is found, say so explicitly — never fill the gap
 with a plausible-sounding invented fact.
@@ -3080,3 +3079,10 @@ with a plausible-sounding invented fact.
 ANSWER: Write findings with source + date attached to every claim; fold into the
 final prompt as grounded specifics ("per [source], as of [date], X"), not as a
 separate research report unless the user asked for research specifically.
+
+EDGE CASES:
+- No web access (copy-paste context, no WebSearch tool): skip live research and
+  proceed to built-in reference tables, then flag the output: "based on knowledge
+  as of [date] — verify if this platform shipped an update since."
+- Unnamed or new platform not in cheat-sheets: always research; no built-in
+  fallback exists to guess from.
