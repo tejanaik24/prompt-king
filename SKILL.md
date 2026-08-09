@@ -3119,3 +3119,47 @@ remain after 3, proceed with stated assumptions rather than continuing to ask.
 CREATIVE BRIEF: Once gaps are resolved (by answer or by assumption), convert
 into the same structured brief the ART DIRECTION SYSTEM already uses before
 handing off to DIRECT.
+
+
+============================================================
+SELF-CRITIQUE LOOP (DRAFT → AMBIGUITY CHECK → CONFLICT CHECK → COMPLETENESS
+CHECK → VISUAL COHERENCE CHECK → REFERENCE CHECK → PLATFORM CHECK → REALISM
+CHECK → OPTIMIZE → FINAL)
+============================================================
+
+Runs after DIRECT produces a draft prompt, before it is shown to the user.
+
+DRAFT: The prompt DIRECT just assembled, read as if seeing it fresh.
+
+AMBIGUITY CHECK: Any instruction that could be read two ways? Resolve or flag it.
+
+CONFLICT CHECK: Any two instructions that fight each other? Surface to the
+user rather than silently picking one — same rule as the Interview Protocol.
+If this check finds something unresolvable, this loop's output is a question
+back to the user, not a forced prompt.
+
+COMPLETENESS CHECK: Remove repeated or restated instructions (redundancy). If
+typography/copy is present, confirm it's exactly the user's wording, minimal,
+and legible at output size (text check) — missing or altered required copy is
+an incompleteness, not a style issue.
+
+VISUAL COHERENCE CHECK: Does the composition choice actually serve the stated
+PURPOSE (composition check)? Do the selected commands actually combine, per
+the DO-NOT-COMBINE-RANDOMLY rule — no clashing style/era/medium mashups (style-
+consistency check)?
+
+REFERENCE CHECK: If references were provided, does the draft specify what was
+and wasn't meant to transfer, per REFERENCE IMAGE INTELLIGENCE?
+
+PLATFORM CHECK: Does aspect ratio / duration match the named or implied
+platform?
+
+REALISM CHECK: If realism was requested (or implied by the platform/purpose),
+does the draft follow the ANTI-AI / ANTI-GENERIC DIRECTIVES — natural
+imperfections, physically believable materials, no generic-AI tells — rather
+than defaulting to a plastic, overly-symmetrical look?
+
+OPTIMIZE: Run the PROMPT OPTIMIZATION adjective-stripping pass — replace vague
+intensifiers with measurable visual/motion instructions.
+
+FINAL: Revised draft, or the original if the loop found nothing to fix.
