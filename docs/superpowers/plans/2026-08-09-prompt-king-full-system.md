@@ -6,6 +6,9 @@
 prompt-engineering system (image + video, research-capable, interview-capable,
 self-critiquing) and package it as a public GitHub repo.
 
+**Status:** Complete — Tasks 1–9 done. Eval suite (`tests/eval-suite.md`) passed
+26/26 on 2026-08-09. Published to `tejanaik24/prompt-king`.
+
 **Architecture:** Single unified skill (`SKILL.md` stays the Claude Code entry point)
 built around the 3-stage pipeline from the design spec — INTERVIEW → RESEARCH → DIRECT
 — with DIRECT branching into image or video command libraries. Heavy reference
@@ -877,13 +880,13 @@ pass criteria. Minimum required (positive + adversarial per category, per spec):
 | "Instagram Story" vs "YouTube thumbnail" same subject | DIRECT | Correct aspect ratio (9:16 vs 16:9) per FORMAT DIRECTIVES |
 ```
 
-- [ ] **Step 2: Run each scenario**
+- [x] **Step 2: Run each scenario**
 
 Dispatch a fresh subagent per scenario with only the repo's `SKILL.md` as loaded
 context (mirrors real usage) and the scenario prompt as the user message. Record
 pass/fail and the actual output.
 
-- [ ] **Step 3: Fix any failing scenario**
+- [x] **Step 3: Fix any failing scenario**
 
 Failures go back to the relevant task's file (Task 1-5) for a fix, then re-run
 just that scenario.
@@ -906,17 +909,17 @@ git commit -m "Add and run evaluation suite; all scenarios passing"
 - Consumes: the design spec (`docs/superpowers/specs/2026-08-09-prompt-king-agentic-redesign-design.md`).
 - Produces: nothing consumed downstream — this is the terminal task.
 
-- [ ] **Step 1: Write `docs/architecture.md`**
+- [x] **Step 1: Write `docs/architecture.md`**
 
 Short (under 300 words): the 3-stage pipeline diagram in prose, where each
 component lives (file map), and a pointer to the full spec for detail.
 
-- [ ] **Step 2: Final review against acceptance criteria**
+- [x] **Step 2: Final review against acceptance criteria**
 
 Walk every "Acceptance criteria" line in the Component Specifications section
 above and confirm it's met. Fix anything that isn't.
 
-- [ ] **Step 3: Commit**
+- [x] **Step 3: Commit**
 
 ```bash
 git add docs/architecture.md
