@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <rect width="100%" height="100%" fill="#0D0E12" rx="10" stroke="#1F2937" stroke-width="1"/>
+  
+  <text x="30" y="45" font-family="-apple-system, sans-serif" font-weight="800" font-size="20" fill="#F3F4F6">SELF-IMPROVEMENT LOOP (HUMAN-GATED)</text>
+  <text x="30" y="65" font-family="Courier, monospace" font-size="12" fill="#9CA3AF">Structured closed-loop learning without self-rewriting risks</text>
+
+  <!-- Flow Diagrams -->
+  
+  <!-- Left Side: Live Skill Session -->
+  <g transform="translate(30, 100)">
+    <rect width="210" height="280" rx="8" fill="#14151F" stroke="#374151" stroke-width="1.5"/>
+    <text x="15" y="30" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#8B5CF6">1. LIVE SESSION</text>
+    
+    <rect x="15" y="60" width="180" height="45" rx="4" fill="#1F2937"/>
+    <text x="25" y="78" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#F3F4F6">OBSERVE</text>
+    <text x="25" y="92" font-family="-apple-system, sans-serif" font-size="10.5" fill="#9CA3AF">Identify prompt failure</text>
+
+    <rect x="15" y="115" width="180" height="45" rx="4" fill="#1F2937"/>
+    <text x="25" y="133" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#F3F4F6">RECORD</text>
+    <text x="25" y="147" font-family="-apple-system, sans-serif" font-size="10.5" fill="#9CA3AF">Save experience record</text>
+    
+    <text x="15" y="210" font-family="Courier, monospace" font-size="10.5" fill="#A78BFA">writes to:</text>
+    <text x="15" y="230" font-family="Courier, monospace" font-size="10.5" fill="#10B981">data/experiences/*.yml</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 240,240 L 275,240" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="280,240 272,236 272,244" fill="#8B5CF6"/>
+
+  <!-- Center Side: Operator Analysis Pipeline -->
+  <g transform="translate(285, 100)">
+    <rect width="230" height="280" rx="8" fill="#14151F" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="15" y="30" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#8B5CF6">2. ANALYZE &amp; EXPERIMENT</text>
+    
+    <rect x="15" y="60" width="200" height="45" rx="4" fill="#1D1E2C" stroke="#8B5CF6" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="25" y="78" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#A78BFA">DETECT PATTERN</text>
+    <text x="25" y="92" font-family="-apple-system, sans-serif" font-size="10.5" fill="#9CA3AF">Filter failures (count &gt;= 5)</text>
+
+    <rect x="15" y="115" width="200" height="45" rx="4" fill="#1D1E2C" stroke="#8B5CF6" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="25" y="133" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#A78BFA">HYPOTHESIZE &amp; TEST</text>
+    <text x="25" y="147" font-family="-apple-system, sans-serif" font-size="10.5" fill="#9CA3AF">Draft new negative prompt rules</text>
+
+    <rect x="15" y="170" width="200" height="45" rx="4" fill="#1D1E2C" stroke="#8B5CF6" stroke-opacity="0.3" stroke-width="1"/>
+    <text x="25" y="188" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#A78BFA">REGRESSION CHECK</text>
+    <text x="25" y="202" font-family="-apple-system, sans-serif" font-size="10.5" fill="#9CA3AF">Ensure no passing scenarios break</text>
+
+    <text x="15" y="240" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">using: scripts/detect-patterns.ps1</text>
+    <text x="15" y="255" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">       scripts/promote-rule.ps1</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 515,240 L 550,240" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="555,240 547,236 547,244" fill="#8B5CF6"/>
+
+  <!-- Right Side: Human-Gate and Deploy -->
+  <g transform="translate(560, 100)">
+    <rect width="210" height="280" rx="8" fill="#14151F" stroke="#D946EF" stroke-width="1.5"/>
+    <text x="15" y="30" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#D946EF">3. PROMOTION &amp; DEPLOY</text>
+    
+    <rect x="15" y="60" width="180" height="65" rx="4" fill="#2A1B2D" stroke="#D946EF" stroke-width="1"/>
+    <text x="25" y="80" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#F472B6">HUMAN PROMOTION GATE</text>
+    <text x="25" y="98" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Operator must explicitly</text>
+    <text x="25" y="113" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">approve SKILL.md changes</text>
+
+    <rect x="15" y="135" width="180" height="45" rx="4" fill="#1F2937"/>
+    <text x="25" y="153" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#F3F4F6">VERSION &amp; DEPLOY</text>
+    <text x="25" y="167" font-family="-apple-system, sans-serif" font-size="10.5" fill="#9CA3AF">Snapshot &amp; sync live skill</text>
+    
+    <text x="15" y="210" font-family="Courier, monospace" font-size="10.5" fill="#EAB308">ROLLBACK PROTECTION</text>
+    <text x="15" y="230" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">Restore from versions/</text>
+  </g>
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <rect width="100%" height="100%" fill="#0D0E12" rx="10" stroke="#1F2937" stroke-width="1"/>
+  
+  <text x="30" y="45" font-family="-apple-system, sans-serif" font-weight="800" font-size="20" fill="#F3F4F6">NEGATIVE PROMPT INTELLIGENCE ENGINE</text>
+  <text x="30" y="65" font-family="Courier, monospace" font-size="12" fill="#9CA3AF">Contextual negative filtering instead of generic low-quality templates</text>
+
+  <!-- Flow diagram of pipeline -->
+  <g transform="translate(30, 100)">
+    <rect width="740" height="80" rx="8" fill="#14151F" stroke="#374151" stroke-width="1"/>
+    
+    <text x="15" y="30" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#8B5CF6">THE PIPELINE</text>
+    <text x="15" y="55" font-family="Courier, monospace" font-size="12" fill="#F3F4F6">REQUEST → CONTENT TYPE → FAILURE MODE MATCH → CATEGORY → CONFLICT CHECK → FINAL NEGATIVE</text>
+  </g>
+
+  <!-- Pipeline blocks -->
+  <!-- Box A: failure modes -->
+  <rect x="30" y="200" width="220" height="150" rx="8" fill="#14151F" stroke="#1F2937" stroke-width="1.5"/>
+  <text x="45" y="230" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#8B5CF6">FAILURE MODE MATCH</text>
+  <text x="45" y="255" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Identifies threat category:</text>
+  <text x="45" y="275" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">HANDS / ANATOMY</text>
+  <text x="45" y="295" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">TEXT / TYPOGRAPHY</text>
+  <text x="45" y="315" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">STYLE DRIFT / GENERIC</text>
+
+  <!-- Connection -->
+  <path d="M 250,275 L 280,275" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="285,275 277,271 277,279" fill="#8B5CF6"/>
+
+  <!-- Box B: conflict check -->
+  <rect x="290" y="200" width="220" height="150" rx="8" fill="#14151F" stroke="#8B5CF6" stroke-width="1.5"/>
+  <text x="305" y="230" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#A78BFA">CONFLICT CHECK</text>
+  <text x="305" y="255" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Check against positive brief</text>
+  <text x="305" y="275" font-family="Courier, monospace" font-size="10.5" fill="#EAB308">Rule: Positive overrides negative</text>
+  <text x="305" y="295" font-family="Courier, monospace" font-size="10" fill="#9CA3AF">Example: "soft studio lighting" vs</text>
+  <text x="305" y="310" font-family="Courier, monospace" font-size="10" fill="#9CA3AF">"harsh shadows" (drop shadows)</text>
+  <text x="305" y="330" font-family="Courier, monospace" font-size="10" fill="#10B981">Never leave known contradiction</text>
+
+  <!-- Connection -->
+  <path d="M 510,275 L 540,275" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="545,275 537,271 537,279" fill="#8B5CF6"/>
+
+  <!-- Box C: final negative -->
+  <rect x="550" y="200" width="220" height="150" rx="8" fill="#14151F" stroke="#D946EF" stroke-width="1.5"/>
+  <text x="565" y="230" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#F472B6">FINAL NEGATIVE PROMPT</text>
+  <text x="565" y="255" font-family="Courier, monospace" font-size="11" fill="#F3F4F6">Avoid list with version tag</text>
+  <text x="565" y="280" font-family="Courier, monospace" font-size="10.5" fill="#10B981">"Negative base: NEG-V1"</text>
+  <text x="565" y="305" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">Highly precise avoid terms</text>
+  <text x="565" y="320" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">optimized for flux/SDXL</text>
+</svg>

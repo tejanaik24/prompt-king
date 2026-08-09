@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 350" width="600" height="350">
+  <rect width="100%" height="100%" fill="#0D0E12" rx="8" stroke="#1F2937" stroke-width="1"/>
+  
+  <text x="35" y="40" font-family="-apple-system, sans-serif" font-weight="800" font-size="16" fill="#F3F4F6">REFERENCE-IMAGE DECOMPOSITION</text>
+  <text x="35" y="55" font-family="Courier, monospace" font-size="11" fill="#9CA3AF">Surgical extraction of visual aspects from source images</text>
+
+  <!-- Flow Grid -->
+  <!-- Left Box: Source Image -->
+  <g transform="translate(35, 90)">
+    <rect width="130" height="180" rx="6" fill="#14151F" stroke="#374151" stroke-width="1.5"/>
+    <text x="15" y="25" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#8B5CF6">SOURCE IMAGE</text>
+    <rect x="15" y="45" width="100" height="70" rx="4" fill="#1F2937" stroke="#374151" stroke-width="1"/>
+    <text x="20" y="85" font-family="Courier, monospace" font-size="10.5" fill="#9CA3AF">[IMAGE INPUT]</text>
+    
+    <text x="15" y="140" font-family="-apple-system, sans-serif" font-size="9.5" fill="#9CA3AF">Ambiguous prompt</text>
+    <text x="15" y="155" font-family="Courier, monospace" font-size="9.5" fill="#EAB308">"Make it like this"</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 165,180 L 195,180" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="200,180 192,176 192,184" fill="#8B5CF6"/>
+
+  <!-- Center Box: Extraction Core -->
+  <g transform="translate(200, 90)">
+    <rect width="200" height="180" rx="6" fill="#1D1E2C" stroke="#8B5CF6" stroke-width="1.5"/>
+    <text x="15" y="25" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#A78BFA">DECOMPOSITION PROCESS</text>
+    
+    <rect x="15" y="45" width="170" height="30" rx="4" fill="#1F2937"/>
+    <text x="25" y="64" font-family="Courier, monospace" font-size="9.5" fill="#F3F4F6">1. IDENTITY / CHARACTER</text>
+
+    <rect x="15" y="85" width="170" height="30" rx="4" fill="#1F2937"/>
+    <text x="25" y="104" font-family="Courier, monospace" font-size="9.5" fill="#F3F4F6">2. LIGHTING SETUP</text>
+
+    <rect x="15" y="125" width="170" height="30" rx="4" fill="#1F2937"/>
+    <text x="25" y="144" font-family="Courier, monospace" font-size="9.5" fill="#F3F4F6">3. POSE &amp; COMPOSITION</text>
+    
+    <text x="15" y="165" font-family="-apple-system, sans-serif" font-size="9.5" fill="#D946EF">Surgically isolates variables</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 400,180 L 430,180" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="435,180 427,176 427,184" fill="#8B5CF6"/>
+
+  <!-- Right Box: Target Output -->
+  <g transform="translate(435, 90)">
+    <rect width="130" height="180" rx="6" fill="#14151F" stroke="#D946EF" stroke-width="1.5"/>
+    <text x="15" y="25" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#F472B6">TARGET BRIEF</text>
+    
+    <text x="15" y="55" font-family="-apple-system, sans-serif" font-size="9.5" fill="#9CA3AF">Keeps lighting</text>
+    <text x="15" y="75" font-family="-apple-system, sans-serif" font-size="9.5" fill="#9CA3AF">Alters character</text>
+    <text x="15" y="95" font-family="-apple-system, sans-serif" font-size="9.5" fill="#9CA3AF">Maintains layout</text>
+    
+    <rect x="15" y="125" width="100" height="38" rx="4" fill="#2A1B2D" stroke="#D946EF" stroke-width="1"/>
+    <text x="20" y="141" font-family="Courier, monospace" font-size="9" fill="#F472B6">NO DRIFT</text>
+    <text x="20" y="152" font-family="Courier, monospace" font-size="9" fill="#9CA3AF">VERIFIED</text>
+  </g>
+</svg>

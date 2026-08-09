@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1E26"/>
+      <stop offset="100%" stop-color="#121217"/>
+    </linearGradient>
+    <linearGradient id="purpleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8B5CF6"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#EC4899"/>
+      <stop offset="100%" stop-color="#F472B6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#0D0E12" rx="10" stroke="#1F2937" stroke-width="1"/>
+  
+  <text x="30" y="45" font-family="-apple-system, sans-serif" font-weight="800" font-size="20" fill="#F3F4F6">SYSTEM OVERVIEW ARCHITECTURE</text>
+  <text x="30" y="65" font-family="Courier, monospace" font-size="12" fill="#9CA3AF">End-to-End prompt generation compilation pipeline</text>
+  
+  <!-- Flow Steps -->
+  
+  <!-- Step 1: User Request -->
+  <rect x="30" y="100" width="140" height="80" rx="8" fill="url(#boxGrad)" stroke="#374151" stroke-width="1.5"/>
+  <text x="45" y="125" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#8B5CF6">01. REQUEST</text>
+  <text x="45" y="145" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Ambiguous intent</text>
+  <text x="45" y="160" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">or raw brief</text>
+
+  <!-- Arrow 1 -->
+  <path d="M 170,140 L 205,140" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="210,140 202,136 202,144" fill="#8B5CF6"/>
+
+  <!-- Step 2: Intent Classifier & Interview -->
+  <rect x="215" y="100" width="160" height="80" rx="8" fill="url(#boxGrad)" stroke="#374151" stroke-width="1.5"/>
+  <text x="230" y="125" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#8B5CF6">02. STRATEGY</text>
+  <text x="230" y="145" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Interview (≤3 Qs)</text>
+  <text x="230" y="160" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">or Direct pipeline</text>
+
+  <!-- Arrow 2 -->
+  <path d="M 375,140 L 410,140" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="415,140 407,136 407,144" fill="#8B5CF6"/>
+
+  <!-- Step 3: Core Compilation (Image/Video Modules) -->
+  <rect x="420" y="100" width="170" height="80" rx="8" fill="url(#boxGrad)" stroke="url(#purpleGrad)" stroke-width="1.5"/>
+  <text x="435" y="125" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#A78BFA">03. COMPILATION</text>
+  <text x="435" y="145" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Vocabulary match</text>
+  <text x="435" y="160" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">Image/Video library</text>
+
+  <!-- Arrow 3 -->
+  <path d="M 590,140 L 625,140" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="630,140 622,136 622,144" fill="#8B5CF6"/>
+
+  <!-- Step 4: Negative Prompt Engine -->
+  <rect x="635" y="100" width="140" height="80" rx="8" fill="url(#boxGrad)" stroke="#374151" stroke-width="1.5"/>
+  <text x="650" y="125" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#D946EF">04. NEGATIVE</text>
+  <text x="650" y="145" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Content-matched</text>
+  <text x="650" y="160" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">avoid directives</text>
+
+  <!-- Down Connection -->
+  <path d="M 705,180 L 705,225" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="705,230 701,222 709,222" fill="#8B5CF6"/>
+
+  <!-- Row 2 -->
+
+  <!-- Step 5: Self-Critique Loop -->
+  <rect x="615" y="235" width="160" height="80" rx="8" fill="url(#boxGrad)" stroke="url(#pinkGrad)" stroke-width="1.5"/>
+  <text x="630" y="260" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#F472B6">05. CRITIQUE</text>
+  <text x="630" y="280" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Rule validation</text>
+  <text x="630" y="295" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">Adjective pruning</text>
+
+  <!-- Arrow Left 1 -->
+  <path d="M 615,275 L 580,275" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="575,275 583,279 583,271" fill="#8B5CF6"/>
+
+  <!-- Step 6: Compilation Output -->
+  <rect x="400" y="235" width="175" height="80" rx="8" fill="url(#boxGrad)" stroke="#374151" stroke-width="1.5"/>
+  <text x="415" y="260" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#8B5CF6">06. OUTPUT</text>
+  <text x="415" y="280" font-family="-apple-system, sans-serif" font-size="11" fill="#10B981">6-Part Production</text>
+  <text x="415" y="295" font-family="-apple-system, sans-serif" font-size="11" fill="#10B981">ready prompt package</text>
+
+  <!-- Arrow Left 2 -->
+  <path d="M 400,275 L 365,275" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="360,275 368,279 368,271" fill="#8B5CF6"/>
+
+  <!-- Step 7: Execution & Evaluation -->
+  <rect x="180" y="235" width="180" height="80" rx="8" fill="url(#boxGrad)" stroke="#374151" stroke-width="1.5"/>
+  <text x="195" y="260" font-family="-apple-system, sans-serif" font-weight="bold" font-size="12" fill="#8B5CF6">07. EVALUATION</text>
+  <text x="195" y="280" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">30-Scenario suite</text>
+  <text x="195" y="295" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">Adversarial check</text>
+
+  <!-- Arrow Left 3 -->
+  <path d="M 180,275 L 145,275" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="140,275 148,279 148,271" fill="#8B5CF6"/>
+
+  <!-- Step 8: Self-Improvement System -->
+  <rect x="25" y="235" width="115" height="80" rx="8" fill="url(#boxGrad)" stroke="#374151" stroke-width="1.5"/>
+  <text x="35" y="260" font-family="-apple-system, sans-serif" font-weight="bold" font-size="11" fill="#8B5CF6">08. LEARN</text>
+  <text x="35" y="280" font-family="-apple-system, sans-serif" font-size="10" fill="#F3F4F6">Failure logger</text>
+  <text x="35" y="295" font-family="-apple-system, sans-serif" font-size="10" fill="#9CA3AF">Human-gated</text>
+
+  <!-- Bottom boundary annotation for visual aesthetics -->
+  <rect x="30" y="360" width="740" height="60" rx="6" fill="#14151F" stroke="#2D2E3D" stroke-width="1"/>
+  <text x="50" y="395" font-family="Courier, monospace" font-size="11" fill="#9CA3AF">INTEGRATION LAYER: Compatible with standard LLMs (Claude, GPT, Gemini) + image engines (Flux, SDXL, Midjourney)</text>
+</svg>

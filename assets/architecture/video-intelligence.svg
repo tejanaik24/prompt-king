@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <rect width="100%" height="100%" fill="#0D0E12" rx="10" stroke="#1F2937" stroke-width="1"/>
+  
+  <text x="30" y="45" font-family="-apple-system, sans-serif" font-weight="800" font-size="20" fill="#F3F4F6">VIDEO INTELLIGENCE PIPELINE</text>
+  <text x="30" y="65" font-family="Courier, monospace" font-size="12" fill="#9CA3AF">Temporal dynamics, camera motion, and platform specifications</text>
+
+  <!-- Flow Grid -->
+  <!-- Box 1: Platform & Aspect Ratio -->
+  <rect x="30" y="100" width="220" height="130" rx="8" fill="#14151F" stroke="#374151" stroke-width="1.5"/>
+  <text x="45" y="130" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#8B5CF6">01. PLATFORM &amp; ASPECT</text>
+  <text x="45" y="155" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Veo 3, Kling, Runway, Luma</text>
+  <text x="45" y="175" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">Auto aspect conversion</text>
+  <text x="45" y="195" font-family="Courier, monospace" font-size="10.5" fill="#10B981">Landscape / Portrait / 16:9 / 9:16</text>
+
+  <!-- Arrow -->
+  <path d="M 250,165 L 280,165" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="285,165 277,161 277,169" fill="#8B5CF6"/>
+
+  <!-- Box 2: Camera Movement Taxonomy -->
+  <rect x="290" y="100" width="220" height="130" rx="8" fill="#14151F" stroke="#8B5CF6" stroke-width="1.5"/>
+  <text x="305" y="130" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#8B5CF6">02. TEMPORAL DYNAMICS</text>
+  <text x="305" y="155" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Camera movement controls</text>
+  <text x="305" y="175" font-family="Courier, monospace" font-size="10.5" fill="#F3F4F6">PAN / TILT / DOLLY / BOOM</text>
+  <text x="305" y="195" font-family="Courier, monospace" font-size="10.5" fill="#F3F4F6">CRASH_ZOOM / ORBITAL / STATIC</text>
+
+  <!-- Arrow -->
+  <path d="M 510,165 L 540,165" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round"/>
+  <polygon points="545,165 537,161 537,169" fill="#8B5CF6"/>
+
+  <!-- Box 3: Action, Speed & Duration -->
+  <rect x="550" y="100" width="220" height="130" rx="8" fill="#14151F" stroke="#374151" stroke-width="1.5"/>
+  <text x="565" y="130" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#8B5CF6">03. MOTION &amp; PACING</text>
+  <text x="565" y="155" font-family="-apple-system, sans-serif" font-size="11" fill="#F3F4F6">Subject action speed</text>
+  <text x="565" y="175" font-family="-apple-system, sans-serif" font-size="11" fill="#9CA3AF">FPS &amp; target durations</text>
+  <text x="565" y="195" font-family="Courier, monospace" font-size="10.5" fill="#10B981">Continuous movement, 5s-10s</text>
+
+  <!-- Bottom Details Area -->
+  <g transform="translate(30, 260)">
+    <rect width="740" height="150" rx="8" fill="#111116" stroke="#1F2937" stroke-width="1"/>
+    <text x="20" y="30" font-family="-apple-system, sans-serif" font-weight="bold" font-size="13" fill="#A78BFA">VIDEO COMPILATION PATTERNS</text>
+    
+    <text x="20" y="60" font-family="-apple-system, sans-serif" font-size="11.5" fill="#F3F4F6">A. SHOT STRUCTURE:</text>
+    <text x="170" y="60" font-family="Courier, monospace" font-size="11" fill="#9CA3AF">Visual Type + Framing + Subject Action + Camera Movement + Light &amp; Pacing + Duration</text>
+    
+    <text x="20" y="90" font-family="-apple-system, sans-serif" font-size="11.5" fill="#F3F4F6">B. CRITIQUE LAYER:</text>
+    <text x="170" y="90" font-family="Courier, monospace" font-size="11" fill="#9CA3AF">Strips generic AI terms ("hyperrealistic", "masterpiece"), enforces physical materials &amp; frame dynamics.</text>
+
+    <text x="20" y="120" font-family="-apple-system, sans-serif" font-size="11.5" fill="#F3F4F6">C. PLATFORM ADAPTOR:</text>
+    <text x="170" y="120" font-family="Courier, monospace" font-size="11" fill="#9CA3AF">Translates abstract descriptions to platform-specific parameters and avoids platform-ignored tags.</text>
+  </g>
+</svg>
