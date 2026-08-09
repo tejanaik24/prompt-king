@@ -90,21 +90,43 @@ lower-confidence than fields confirmed on a first-party page.
   (official Runway help center; direct fetch from this environment returned
   HTTP 403, content below drawn from the WebSearch index of this page),
   accessed 2026-08-09
-- Source: https://tech.yahoo.com/ai/meta-ai/articles/runway-releases-first-world-model-170000394.html,
-  accessed 2026-08-09 (Gen-4.5 native-audio launch date)
-- Native audio/dialogue: Yes, but only from Gen-4.5 onward — native audio
-  (dialogue, ambient soundtrack, synchronized music, as one multimodal
-  output) was added December 11, 2025 per news coverage. Gen-4 (pre-4.5) had
-  no native audio. Confirm which model name is in play before assuming audio
-  support.
-- Max duration / aspect ratios: Gen-4 base generates in fixed 5- or
-  10-second clips per generation (stated on the official help-center guide).
-  Gen-4.5 is reported by secondary sources to support continuous generation
-  up to roughly 60 seconds / one-minute multi-shot output with character
-  consistency — not confirmed on an official spec page, needs verification.
-  A reported aspect-ratio list (16:9, 9:16, 1:1, 4:3, 3:4, 21:9) is from
-  secondary sources only — not confirmed via official docs, needs
-  verification.
+- Source: https://runway.com/research/introducing-runway-gen-4.5 (official
+  Runway research announcement, fetched directly), accessed 2026-08-09 —
+  page is dated December 1, 2025 and covers only visual capabilities
+  (motion quality, prompt adherence, fidelity); it does not mention audio or
+  state a duration limit
+- Source: https://techcrunch.com/2025/12/11/runway-releases-its-first-world-model-adds-native-audio-to-latest-video-model/
+  (news, fetched directly), accessed 2026-08-09 — published December 11,
+  2025; quotes Runway describing an update to "its foundational Gen 4.5
+  model released earlier in the month" that "brings native audio and
+  long-form, multi-shot generation capabilities"
+- Native audio/dialogue: Yes, but only from Gen-4.5 onward, added in a
+  post-launch update, not in the December 1, 2025 base release (confirmed:
+  the official runway.com Gen-4.5 announcement, dated Dec 1 2025, says
+  nothing about audio). The exact date of the audio update itself is NOT
+  stated anywhere found — TechCrunch's article reporting it is dated
+  December 11, 2025 and calls it an update to the model "released earlier in
+  the month," but that phrase describes the Dec 1 base release, not the
+  audio update's own ship date. Correction from an earlier draft of this
+  file: do not read "December 11, 2025" as the confirmed audio-launch date —
+  that was this file's own error, not something either source states. Best
+  supportable statement: native audio arrived some time between the Dec 1,
+  2025 Gen-4.5 launch and the Dec 11, 2025 TechCrunch report — not confirmed
+  to a specific day. Gen-4 (pre-4.5) had no native audio. Confirm which model
+  name is in play before assuming audio support.
+- Max duration / aspect ratios: Two different things are being reported, not
+  necessarily a contradiction: (1) individual generations/shots are 5-10
+  seconds per clip, per the official Gen-4 help-center guide; (2) Gen-4.5
+  adds a multi-shot mode that TechCrunch (quoting Runway) says can assemble
+  shots into "one-minute videos with character consistency, native dialogue,
+  background audio, and complex shots from various angles." Neither the
+  per-shot figure nor the one-minute multi-shot figure is stated on an
+  official Runway spec/docs page (the runway.com announcement gives no
+  duration numbers at all) — treat both as not confirmed, needs
+  verification, and do not assume a single generation can exceed ~10 seconds
+  without multi-shot stitching. A reported aspect-ratio list (16:9, 9:16,
+  1:1, 4:3, 3:4, 21:9) is from secondary sources only — not confirmed via
+  official docs, needs verification.
 - Prompt structure preference: Official guidance favors clear, plain-language
   full sentences over rigid structure — "prompts do not need to follow a
   specific structure... full sentences are recommended." Suggested
