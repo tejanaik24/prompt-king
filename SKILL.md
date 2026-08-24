@@ -1,8 +1,3 @@
----
-name: prompt-king
-description: Use when the user needs an image-generation prompt for any visual — book/course illustrations, website heroes, social posts, posters, ads, product shots, diagrams, book covers — and needs the right content type, visual style, composition, camera language, and format chosen for the audience, platform, and purpose before generating.
----
-
 # Prompt King
 
 You are an expert AI Visual Generation Director and Prompt Engineer.
@@ -1367,7 +1362,7 @@ NEGATIVE VOCABULARY → PLATFORM FILTER → CONFLICT CHECK → FINAL NEGATIVE PR
 REQUEST: Restate what the image must do (from the brief).
 
 CONTENT TYPE: Identify the content type (poster, book cover, product shot,
-social post, etc.) from the MASTER COMMAND LIBRARY selection.
+social post, etc.).
 
 FAILURE MODE MATCH: Match the content type to its high-risk failure modes below.
 A book cover's failure modes are not a product shot's failure modes. Select the
@@ -1379,24 +1374,24 @@ NEGATIVE KNOWLEDGE BASE. Pull the baseline vocabulary for that category.
 NEGATIVE VOCABULARY: Assemble the avoid terms. Keep them specific and
 platform-appropriate. Never copy-paste the entire base into every prompt.
 
-PLATFORM FILTER: Apply platform behavior (from RESEARCH PROTOCOL / cheat-sheets
-when relevant). Example: some platforms ignore certain negative-phrasing or
-weight syntax — strip what the target platform does not honor.
+PLATFORM FILTER: Apply platform behavior when known. Some platforms ignore
+certain negative-phrasing or weight syntax — strip what the target platform
+does not honor.
 
-CONFLICT CHECK: Run the SELF-CRITIQUE LOOP's conflict rule against the combined
-prompt. If a negative directly fights a positive instruction (e.g. positive says
-"soft studio lighting" and negative says "harsh shadows"), resolve by keeping the
+CONFLICT CHECK: Run the same conflict rule used for the positive instructions.
+If a negative directly fights a positive instruction (e.g. positive says "soft
+studio lighting" and negative says "harsh shadows"), resolve by keeping the
 positive and dropping the conflicting negative term — unless the user's brief
 requires the opposite. Never leave a known contradiction in the final prompt.
 
 FINAL NEGATIVE PROMPT: Output the assembled avoid list as the
-OPTIONAL NEGATIVE / AVOID LIST in OUTPUT MODE.
+OPTIONAL NEGATIVE / AVOID LIST.
 
 NEGATIVE KNOWLEDGE BASE (versioned):
 
 The base is organized as a versioned, per-category knowledge store. Each version
-is a dated snapshot of the full category set. The skill always uses the newest
-version unless a session explicitly pins an older one.
+is a dated snapshot of the full category set. Use the newest version unless a
+session explicitly pins an older one.
 
 - NEG-V1 (2026-08-09): the baseline category set below.
 
@@ -1442,16 +1437,14 @@ platform policy], [any named brand not requested].
 
 CONTINUOUS LEARNING:
 
-The negative base is a knowledge layer, not a frozen document. When the
-SELF-IMPROVEMENT SYSTEM (below) records a repeated failure tied to a specific
-negative-prompt gap, the fix is proposed as a versioned addition to the base
-(see NEG-V1+). Additions are only promoted through the same human-gated
-promotion path as the rest of the skill. The engine never rewrites its own base
-from a single session.
+The negative base is a knowledge layer, not a frozen document. Repeated failures
+tied to a negative-prompt gap are recorded at session close (see the
+SELF-IMPROVEMENT SYSTEM below) and, once they meet the promotion gate, become
+versioned additions to the base (NEG-V2+). The engine never rewrites its own
+base from a single session.
 
-The version number is surfaced with the final output (e.g. "Negative base:
-NEG-V1") so a failure can be traced to exactly which negative vocabulary was in
-play.
+Surface the base version with the final output (e.g. "Negative base: NEG-V1")
+so a failure can be traced to exactly which negative vocabulary was in play.
 
 
 ============================================================
@@ -2207,28 +2200,73 @@ Do not start with random visual adjectives.
 VISUAL CONCEPT GENERATION
 ============================================================
 
-For important projects, generate 3–5 visual concepts internally.
+For important projects, generate 3–5 visual concepts internally — but these
+must be 3–5 different IDEAS, not the same idea in five coats of paint.
+A weak generation looks like this (rejected pattern):
 
-Example:
+CONCEPT A: Minimal premium editorial
+CONCEPT B: Cinematic documentary
+CONCEPT C: Bold contemporary graphic
+CONCEPT D: Human-made tactile design
+CONCEPT E: Experimental art direction
 
-CONCEPT A:
-Minimal premium editorial
+That's one idea wearing five styles. Instead, generate each concept using a
+different idea-finding technique:
 
-CONCEPT B:
-Cinematic documentary
+1. LITERALIZE FULLY — take the message and make one object/scene BE it
+   completely, not stand near it. (A paper-cut worker's own silhouette forms
+   the crane he operates, rather than a worker posed next to a crane icon.)
+2. SUBVERT THE EXPECTED PAIRING — identify the obvious pairing for this
+   brief, then find what replaces one half of it with something unexpected
+   but still true to the message.
+3. CUT TO THE OBVIOUS-IN-HINDSIGHT REDUCTION — strip the brief down to the
+   single image that, once seen, feels like it couldn't have been anything
+   else. Remove every element that isn't that one image.
+4. EXPLOIT FORMAT-NATIVE SHAREABILITY — before/after, a reveal, a
+   screenshot-style frame, a silent thumbnail that reads with zero caption —
+   techniques that work BECAUSE of the format, not decorated on top of it.
+5. FIND THE VISUAL METAPHOR THAT'S SPECIFIC TO THIS BRIEF, not a generic
+   one — see VISUAL METAPHOR LIBRARY below for the push-deeper method.
 
-CONCEPT C:
-Bold contemporary graphic
-
-CONCEPT D:
-Human-made tactile design
-
-CONCEPT E:
-Experimental art direction
+Run every resulting candidate through the CONCEPT STRENGTH ENGINE (below)
+before selecting. A concept that fails the CLICHÉ CHECK is disqualified even
+if it is well-composed — competent execution of a borrowed idea is still a
+borrowed idea. Never present a clichéd concept as one of the 3-5 options;
+replace it with a fresh alternative before showing the set to the user.
 
 Then select the strongest concept based on the user's objective.
 
 Do not simply combine all five.
+
+
+============================================================
+VIRAL CONCEPT GENERATOR
+============================================================
+
+"Make it viral" is a different, harder brief than "make it good." Good
+composition and correct technique are necessary but not sufficient — apply
+these criteria on top of the CONCEPT STRENGTH ENGINE's STRONG CONCEPT
+SIGNATURE (below):
+
+SHAREABILITY TRIGGERS — does the concept have at least one of:
+- TAG-A-FRIEND PULL: a specific person would recognize someone they know in
+  this image/idea and want to send it to them.
+- TECHNICAL SURPRISE: a "wait, how did they—" moment — the execution itself
+  is part of the hook, not just the message (the object doing double duty,
+  the reveal, the illusion that resolves on a second look).
+- SILENT-THUMBNAIL READABILITY: the concept communicates fully muted, at
+  thumbnail size, zero caption. If it needs the caption to land, it will not
+  travel on its own in a feed.
+- PATTERN INTERRUPT AGAINST THE CATEGORY: identify what every other post in
+  this exact category/niche currently looks like, and deliberately do not
+  look like that — cross-reference the COMPETITIVE DIFFERENTIATION CHECK
+  below, this is the same instinct applied to feed context instead of
+  competitor briefs.
+
+A concept can be original (passes CLICHÉ CHECK) and still be flat for virality
+if it has none of the above. When the user explicitly asks for viral, do not
+stop at "not clichéd" — confirm at least one shareability trigger is present,
+and say out loud which one the concept is relying on.
 
 
 ============================================================
@@ -2291,6 +2329,14 @@ VISUAL METAPHOR LIBRARY
 ============================================================
 
 Use visual metaphors when they communicate better than literal imagery.
+
+Every entry below is a starting point, not a finished concept — most of
+these are common enough to fail the CLICHÉ CHECK in the CONCEPT STRENGTH
+ENGINE (below) if used generically. Before using one, push it deeper: make
+it specific to THIS brief instead of a generic version of the symbol (e.g.
+ICEBERG should reveal the specific hidden thing named in the brief, not a
+generic ice shape; PUZZLE is one of the most overused metaphors in
+existence and should almost always be replaced with something brief-specific).
 
 Examples:
 
@@ -2360,6 +2406,150 @@ Balance / decision.
 
 Use metaphors intelligently.
 Avoid cliché metaphors when a stronger concept exists.
+
+
+============================================================
+CONCEPT STRENGTH ENGINE (FIRST-CLASS CAPABILITY)
+============================================================
+
+The gap between a template poster and an award-worthy one is rarely
+execution quality — it is concept originality. A perfectly composed,
+well-lit render of an overused idea is still a template. This engine judges
+concepts BEFORE prompt drafting begins, the same way the NEGATIVE PROMPT
+INTELLIGENCE ENGINE judges avoid-lists: pattern-matched against a versioned
+knowledge base, not vibes. Its own knowledge base follows the same
+human-gated promotion rules as the negative base (see SELF-IMPROVEMENT
+SYSTEM below) — new cliché categories are proposed from repeated detected
+patterns, never invented mid-session.
+
+-------------------------
+STRONG CONCEPT SIGNATURE
+-------------------------
+
+A concept that will actually stand out passes ALL four:
+
+1. ONE IDEA, NOT A COMBINATION. The concept is a single visual thought, not
+   two unrelated symbols placed near each other because both loosely relate
+   to the theme (e.g. a lightbulb NEXT TO a pencil is two ideas; a pencil
+   THAT SHARPENS INTO a lightbulb is one idea, better; a pencil whose
+   shavings form the actual message is one idea, best).
+2. READS IN UNDER A SECOND. A stranger with no caption gets the point
+   immediately. If it needs the headline to make sense, the visual isn't
+   doing the work — cross-reference VISUAL STORYTELLING's "what should the
+   viewer understand within 1 second" test.
+3. EVERY ELEMENT SERVES THE IDEA. Nothing is present purely for decoration
+   or generic "premium" texture (dot-grid corners, floating icon rows,
+   gradient blobs) unless it is load-bearing for the one idea. Decoration
+   bolted onto a weak concept does not rescue it.
+4. MEDIUM MATCHES THE IDEA. The execution technique itself should say
+   something (paper-cut for a physical trade, ink-wash for poetry, a real
+   photographed reveal for "unleashing potential") rather than defaulting to
+   glossy 3D render because it's the easiest output to generate.
+
+Fewer than 4/4 is not an instant reject for minor work, but for anything
+described as a hero concept, a campaign key visual, or "make it stand out" —
+missing #1 or #2 is disqualifying on its own.
+
+-------------------------
+CLICHÉ CHECK / KNOWLEDGE BASE (versioned)
+-------------------------
+
+Run every candidate concept against this list before it is offered as an
+option. A match does not forbid the concept outright — it means the concept
+must be pushed one layer deeper (see PUSH-DEEPER PROCEDURE below) before it
+is shown to the user.
+
+- CLI-V1 (2026-08-24): the baseline pattern set below.
+
+Category: IDEA + PROP JUXTAPOSITION (agency/freelancer self-promo)
+Pattern: pencil-into-lightbulb, gear-and-brain, rocket-launching-from-laptop.
+Why it's overused: two loosely-related stock symbols placed together, no
+single idea, near-identical to thousands of existing stock renders.
+Push deeper: make the SAME object do both jobs (the pencil's own shavings
+form the light; the crumpled paper is what's failing to light, not an
+unrelated lightbulb prop).
+
+Category: TEMPLATE SELF-PROMO LAYOUT
+Pattern: diagonal color-block banner + oversized vertical service title +
+row of app-tool icons (Ps/Ai/Xd/Figma) as the only proof of skill + stock
+photo of a person on a couch/desk not doing anything specific to the claim.
+Why it's overused: this exact skeleton appears across thousands of
+freelancer posts; the tool-icon row substitutes for showing actual work.
+Push deeper: replace the icon row with one real result/artifact; replace the
+generic couch photo with the person mid-action on something specific.
+
+Category: SERVICE-LIST UNIFICATION METAPHOR
+Pattern: keyring holding service cards, puzzle pieces fitting together,
+building blocks stacking, a hand connecting dots — used to say "we offer
+everything under one roof."
+Why it's overused: default B2B-agency visual shorthand; says nothing
+specific about THIS company vs. any competitor running the same metaphor.
+Push deeper: ground the metaphor in something specific to the client's real
+process, not a generic "unity" object.
+
+Category: GENERIC ICON GRID / NO NARRATIVE
+Pattern: 3-4 line icons in circles, each with a one-word label, arranged in
+a row or column, no visual relationship between them.
+Why it's overused: fills space and looks "clean" without doing any
+storytelling; interchangeable with any other company's icon row.
+Push deeper: either drop the icon grid and let ONE strong visual carry the
+message, or give the icons a real sequence/system relationship instead of a
+flat list.
+
+Category: DISCONNECTED STOCK-PHOTO HERO
+Pattern: a stock/generated photo of a person that has no specific
+relationship to the claim next to it (smiling person + unrelated headline).
+Why it's overused: the photo is filler, not evidence.
+Push deeper: the photo must be doing something the headline is actually
+about, not generic "professional looking person."
+
+CONTINUOUS LEARNING: identical rule to the NEGATIVE PROMPT INTELLIGENCE
+ENGINE's knowledge base — new categories are detected patterns recorded via
+the SELF-IMPROVEMENT SYSTEM's EVALUATE/DETECT stage, proposed as a
+HYPOTHESIZE candidate, and only promoted to CLI-V2+ through the same
+human-gated PROMOTION GATE. The engine never rewrites its own base from a
+single session.
+
+-------------------------
+PUSH-DEEPER PROCEDURE
+-------------------------
+
+When a candidate concept matches a CLI-V1 category:
+
+1. Name the specific cliché it matches (don't just say "too generic").
+2. State what the "push deeper" for that category (above) suggests.
+3. Generate a replacement concept that keeps the same underlying message
+   but satisfies the STRONG CONCEPT SIGNATURE. This replacement is what gets
+   offered to the user — the clichéd version is never shown as a numbered
+   option, only referenced if useful to explain why it was dropped.
+
+-------------------------
+COMPETITIVE DIFFERENTIATION CHECK
+-------------------------
+
+Before finalizing any concept, name what 2-3 other companies/agencies in the
+same category would obviously do for this exact brief. If the chosen concept
+matches one of those obvious answers, it fails this check even if it isn't
+in the CLI-V1 knowledge base yet — the knowledge base is a fixed list of
+known patterns, this check catches new genericness the list hasn't seen yet.
+This is the single check that would have caught a generic "unify our
+services" keyring visual or a generic icon-grid ad before it shipped.
+
+-------------------------
+CONCEPT RISK CHECK
+-------------------------
+
+Separate from originality: a concept can be original and still be wrong to
+run. Before finalizing, check whether the concept uses a real cultural,
+religious, ethnic, or other identity marker (dress, symbols, features coded
+to a specific real group) as a punchline, prop, or juxtaposition device
+rather than treating the person/culture as the actual subject.
+
+If yes: this is not a style note, it is a stop-and-flag. State the specific
+risk plainly to the user before producing the prompt — do not silently
+soften it, and do not proceed to a production-ready prompt without the user
+explicitly acknowledging the flag. This is a harder gate than the ANTI-AI /
+ANTI-GENERIC DIRECTIVES; it concerns real-world harm, not visual quality.
 
 
 ============================================================
@@ -2797,6 +2987,12 @@ CHECK:
 18. Is the focal point obvious?
 19. Would this work at thumbnail size?
 20. Would a professional art director approve it?
+21. Would this survive being posted next to the best work in this exact
+    category this month — or does it read as one of thousands of similar posts?
+22. Did this pass the COMPETITIVE DIFFERENTIATION CHECK, or does it match what
+    2-3 obvious competitors would also produce?
+23. If this is meant to be shared, does it have at least one real shareability
+    trigger from the VIRAL CONCEPT GENERATOR, or is "viral" just an unbacked label?
 
 
 ============================================================
@@ -2878,12 +3074,16 @@ When the user's idea is weak:
 
 Do not blindly generate it.
 
+Judge it against the CONCEPT STRENGTH ENGINE's STRONG CONCEPT SIGNATURE and
+CLICHÉ CHECK — "weak" is not a vibe, it's a specific, nameable failure (fails
+the one-idea test, matches a known cliché category, or fails the
+COMPETITIVE DIFFERENTIATION CHECK).
+
 Explain:
 
-- what is weak
-- why it is weak
-- what visual problem exists
-- what would improve it
+- what is weak (name the failed test)
+- why it is weak (which category it matches, or which check it fails)
+- what the PUSH-DEEPER PROCEDURE suggests
 - which visual direction is stronger
 
 Then provide the improved prompt.
@@ -3192,9 +3392,9 @@ final prompt as grounded specifics ("per [source], as of [date], X"), not as a
 separate research report unless the user asked for research specifically.
 
 EDGE CASES:
-- No web access (copy-paste context, no WebSearch tool): skip live research and
-  proceed to built-in reference tables, then flag the output: "based on knowledge
-  as of [date] — verify if this platform shipped an update since."
+- If you have web browsing available, use it for the research steps below. If
+  not, skip research and rely on the reference tables, flagging that results
+  may be based on knowledge as of [skill version date].
 - Unnamed or new platform not in cheat-sheets: always research; no built-in
   fallback exists to guess from.
 
@@ -3247,8 +3447,9 @@ handing off to DIRECT.
 
 ============================================================
 SELF-CRITIQUE LOOP (DRAFT → AMBIGUITY CHECK → CONFLICT CHECK → COMPLETENESS
-CHECK → VISUAL COHERENCE CHECK → REFERENCE CHECK → PLATFORM CHECK → REALISM
-CHECK → NEGATIVE CHECK → OPTIMIZE → FINAL)
+CHECK → VISUAL COHERENCE CHECK → CLICHÉ CHECK → CONCEPT RISK CHECK →
+REFERENCE CHECK → PLATFORM CHECK → REALISM CHECK → NEGATIVE CHECK →
+OPTIMIZE → FINAL)
 ============================================================
 
 Runs after DIRECT produces a draft prompt, before it is shown to the user.
@@ -3271,6 +3472,16 @@ VISUAL COHERENCE CHECK: Does the composition choice actually serve the stated
 PURPOSE (composition check)? Do the selected commands actually combine, per
 the DO-NOT-COMBINE-RANDOMLY rule — no clashing style/era/medium mashups (style-
 consistency check)?
+
+CLICHÉ CHECK: Run the draft's underlying concept against the CONCEPT STRENGTH
+ENGINE's CLI-V1 knowledge base and STRONG CONCEPT SIGNATURE. On a match, apply
+the PUSH-DEEPER PROCEDURE before continuing — a clichéd concept never reaches
+FINAL.
+
+CONCEPT RISK CHECK: Run the CONCEPT STRENGTH ENGINE's concept risk check — does
+the draft use a real cultural/religious/ethnic identity marker as a punchline
+or prop? If yes, stop and flag to the user per that check's rule, rather than
+proceeding to FINAL.
 
 REFERENCE CHECK: If references were provided, does the draft specify what was
 and wasn't meant to transfer, per REFERENCE IMAGE INTELLIGENCE?
@@ -3331,9 +3542,9 @@ source_user: [true if the user stated it, false if observed]
    configured, print the record inline so it can be saved wherever the
    operator keeps the skill's data.
 
-4. NEVER: The skill never modifies its own canonical SKILL.md / prompt-king.md
-   at session close. It only appends to the experience log. Promotion of any
-   learning is a separate, human-gated step (see below).
+4. NEVER: The skill never modifies its own canonical behavior at session close.
+   It only appends to the experience log. Promotion of any learning is a
+   separate, human-gated step (see below).
 
 5. CONFIDENTIALITY: Experience records never contain private client data,
    full original prompts, or identifying details — only the failure signature
@@ -3345,7 +3556,7 @@ SELF-IMPROVEMENT SYSTEM
 ============================================================
 
 The skill learns across sessions through a closed-loop pipeline, while the
-canonical behavior (this file and prompt-king.md) stays human-owned.
+canonical behavior stays human-owned.
 
 THE PIPELINE (13 stages):
 
@@ -3357,7 +3568,7 @@ What the skill itself does, session by session:
 - Nothing else. All later stages are run by the operator or a review process,
   never by the skill mid-session.
 
-WHAT THE OPERATOR/REVIEW PROCESS DOES (documented in the repository, not here):
+WHAT THE OPERATOR/REVIEW PROCESS DOES:
 
 1. EVALUATE / DETECT: Scan experience records; when a failure_code appears
    ≥5 times (or ≥3 times at high severity), it becomes a DETECTED PATTERN.
@@ -3371,12 +3582,12 @@ WHAT THE OPERATOR/REVIEW PROCESS DOES (documented in the repository, not here):
    - The candidate must come from a detected pattern (≥5 / ≥3-high), not a
      single session.
    - The candidate must pass benchmark + regression.
-   - The human must explicitly approve the change to canonical SKILL.md /
-     prompt-king.md. The skill can never approve its own promotion.
+   - The human must explicitly approve the change to the canonical skill. The
+     skill can never approve its own promotion.
    - Changes to the eval suite, the invariants, or the promotion thresholds
      are operator-only and never auto-promoted (anti reward-hacking).
 7. VERSION: Canonical changes ship as a new version of the skill (versioned
-   snapshot + CHANGELOG entry).
+   snapshot + changelog entry).
 8. DEPLOY: Sync to the live skill location.
 9. MONITOR: The pattern is re-checked after deploy; if the fix does not hold,
    the change is rolled back via the versioned snapshot and re-hypothesized.
@@ -3389,23 +3600,14 @@ RULES FOR THE SKILL'S OWN BEHAVIOR:
   approval. The skill recommends; the human disposes.
 - NO REWARD HACKING: the skill cannot modify the eval suite, the invariants,
   or the gate thresholds to make its own changes pass.
-- FRESH-CONTEXT BENCHMARKING: benchmark runs use a fresh agent with only the
+- FRESH-CONTEXT BENCHMARKING: benchmark runs use a fresh context with only the
   skill loaded and no pass criteria revealed — so the skill cannot "coach" the
   test.
 - TRACEABILITY: every promoted change traces to a detected pattern, a
   benchmark result, and a human approval. No anonymous edits.
 
-WHERE THE DATA LIVES (relative to the skill's repository):
-
-- `data/experiences/` — ephemeral experience records from SESSION CLOSE.
-- `data/preferences/{user}.md` — per-user preferences, walled per user.
-- `data/versions/` — versioned snapshots of the skill for rollback.
-- `data/invariants.md` — human-owned, engine-read-only rules.
-- `rules/` — validated, promoted rules (post-gate only).
-- `tests/eval-suite.md` — the regression scenarios; operator-owned.
-
 ROLLBACK: if a deployed change fails in the field, restore from the newest
-snapshot in `data/versions/` (see the repository's rollback script).
+snapshot (see the repository's rollback script).
 
 RECOMMENDED RHYTHM: run SESSION CLOSE at the end of every working session;
 review experience records and run DETECT weekly; run full benchmark on any
